@@ -14,6 +14,10 @@ config/name="Wgj 277"
 run/main_scene="res://scenes/game/game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Gamedata="*res://engine/gamedata.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

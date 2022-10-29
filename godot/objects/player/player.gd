@@ -5,8 +5,10 @@ var move_speed = 5000
 
 func _physics_process(delta):
 	
+	# handle movement input
 	if allow_input: handle_input(delta)
-	
+
+# movement input
 func handle_input(delta):
 	
 	var move_dir = Vector2()

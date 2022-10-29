@@ -15,3 +15,9 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 
 [node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 82, 50 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="main_ui" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
