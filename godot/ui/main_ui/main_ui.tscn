@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/main_ui/main_ui.gd" type="Script" id=1]
+[ext_resource path="res://fonts/MOZART_0.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 2 )
 
 [node name="main_ui" type="Control"]
 anchor_right = 1.0
@@ -16,3 +21,32 @@ margin_right = 103.0
 margin_bottom = -46.0
 rect_scale = Vector2( 2, 2 )
 text = "Test Button"
+
+[node name="use_item_ui" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -144.0
+margin_top = -132.0
+margin_right = 144.0
+margin_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 1 )
+text = "Use ITEMNAME"
+align = 1
+
+[node name="plants" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 204.0
+margin_top = -66.0
+margin_right = 255.0
+margin_bottom = -46.0
+rect_scale = Vector2( 2, 2 )
+text = "plants"
+
+[node name="open_menus" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
