@@ -2,6 +2,8 @@ extends Node
 
 var plant_data = []
 
+var message_queue = []
+
 func _ready():
 	
 	load_plant_data("res://data/plants.csv")
@@ -25,9 +27,9 @@ func load_plant_data(filepath):
 			plant[header[i]] = line[i]
 		plant_data.push_back(plant)
 		
-				
-	
-	print(plant_data)
 	
 	file.close()
+	
+func add_message(msg):
+	message_queue.push_back(msg)
 	

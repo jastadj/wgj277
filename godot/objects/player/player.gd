@@ -8,6 +8,11 @@ func _physics_process(delta):
 	# handle movement input
 	if allow_input: handle_input(delta)
 
+func _input(event):
+	
+	if event.is_action_pressed("ui_cancel"): get_tree().quit()
+	
+
 # movement input
 func handle_input(delta):
 	
