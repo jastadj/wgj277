@@ -3,6 +3,15 @@ extends KinematicBody2D
 var allow_input = true
 var move_speed = 5000
 
+var inventory_slots = 3
+var _inventory_ui
+var _interaction_target = null
+
+func _ready():
+	
+	yield(get_tree().current_scene, "ready")
+	_inventory_ui = get_tree().current_scene.get_node("CanvasLayer/main_ui/inventory")
+
 func _physics_process(delta):
 	
 	# handle movement input
@@ -12,6 +21,7 @@ func _input(event):
 	
 	if allow_input:
 		if event.is_action_pressed("ui_cancel"): get_tree().quit()
+		elif event.is_action_pressed("ui_accept"): interact(_interaction_target)
 	
 # just a simple method checker
 func is_player(): return true
@@ -30,3 +40,38 @@ func handle_input(delta):
 
 func get_interaction_areas():
 	return $interaction_area.get_overlapping_areas()
+
+func interact(obj):
+	if obj == null: return
+	
+	# can "use" the object like a processor, computer, etc...
+	if obj.has_method("has_action"):
+		print("using object ", obj.object_name)
+	# can pickup the object like an item
+	elif obj.has_method("can_pickup"):
+		print("picking up item ", obj.object_name)
+		pickup_item(obj)
+
+func pickup_item(item):
+	if item == null: return
+	if item.has_method("can_pickup"):
+		# are there free slots?
+		if !has_free_inventory(): return
+		# remove item from parent
+		item.get_parent().remove_child(item)
+		for islot in _inventory_ui.get_children():
+			if islot.item_reference == null:
+				islot.add_item(item)
+				return
+
+func drop_item(item):
+	var random_radius = 6 # random radius to drop the item
+	var objects = get_tree().current_scene.get_node("objects")
+	objects.add_child(item)
+	item.position = position + Vector2( (randi()%random_radius) - (random_radius/2), (randi()%random_radius) - (random_radius/2) )
+		
+func has_free_inventory():
+	for islot in _inventory_ui.get_children():
+		if islot.item_reference == null: return true
+	return false
+		

@@ -1,37 +1,88 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://ui/msg_box/borders.png" type="Texture" id=1]
 [ext_resource path="res://ui/plants/plants.gd" type="Script" id=2]
+[ext_resource path="res://fonts/MOZART_0.ttf" type="DynamicFontData" id=3]
 
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 1 )
-region_rect = Rect2( 44.653, 45.2255, 104.157, 102.167 )
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 3 )
 
-[node name="plants" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="plants" type="CenterContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
 script = ExtResource( 2 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-margin_right = 14.0
-margin_bottom = 14.0
-custom_styles/panel = SubResource( 1 )
+margin_left = 289.0
+margin_top = 280.0
+margin_right = 735.0
+margin_bottom = 320.0
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer"]
-margin_right = 152.0
-margin_bottom = 14.0
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 439.0
+margin_bottom = 33.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/GridContainer"]
-margin_right = 152.0
-margin_bottom = 14.0
+[node name="header" type="HBoxContainer" parent="PanelContainer/GridContainer"]
+margin_right = 432.0
+margin_bottom = 26.0
 
-[node name="plant_name" type="Label" parent="PanelContainer/GridContainer/HBoxContainer"]
+[node name="name" type="VBoxContainer" parent="PanelContainer/GridContainer/header"]
 margin_right = 74.0
-margin_bottom = 14.0
-text = "plant_name"
+margin_bottom = 26.0
 
-[node name="plant_name2" type="Label" parent="PanelContainer/GridContainer/HBoxContainer"]
+[node name="name" type="Label" parent="PanelContainer/GridContainer/header/name"]
+margin_right = 74.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 74, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "Name"
+
+[node name="boil" type="VBoxContainer" parent="PanelContainer/GridContainer/header"]
 margin_left = 78.0
 margin_right = 152.0
-margin_bottom = 14.0
-text = "plant_name"
+margin_bottom = 26.0
+
+[node name="boil" type="Label" parent="PanelContainer/GridContainer/header/boil"]
+margin_right = 74.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 74, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "Boil"
+
+[node name="incinerate" type="VBoxContainer" parent="PanelContainer/GridContainer/header"]
+margin_left = 156.0
+margin_right = 276.0
+margin_bottom = 26.0
+
+[node name="incinerate" type="Label" parent="PanelContainer/GridContainer/header/incinerate"]
+margin_right = 120.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 74, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "Incinerate"
+
+[node name="juice" type="VBoxContainer" parent="PanelContainer/GridContainer/header"]
+margin_left = 280.0
+margin_right = 354.0
+margin_bottom = 26.0
+
+[node name="juice" type="Label" parent="PanelContainer/GridContainer/header/juice"]
+margin_right = 74.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 74, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "Juice"
+
+[node name="grind" type="VBoxContainer" parent="PanelContainer/GridContainer/header"]
+margin_left = 358.0
+margin_right = 432.0
+margin_bottom = 26.0
+
+[node name="grind" type="Label" parent="PanelContainer/GridContainer/header/grind"]
+margin_right = 74.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 74, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "Grind"
