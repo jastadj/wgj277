@@ -77,6 +77,16 @@ func pickup_item(obj):
 	if inv_slot == null: return false
 	inv_slot.add_item(obj)
 	return true
+
+func drop_item(obj):
+	if obj == null: return false
+	var drop_radius = 8
+	var rand_drop_pos = Vector2(randi()%(drop_radius*2)-drop_radius, randi()%(drop_radius*2)-drop_radius)
+	if obj.get_parent():
+		obj.get_parent().remove_child(obj)
+	obj.position = global_position + rand_drop_pos
+	get_tree().current_scene.get_node("objects").add_child(obj)
+	return true
 	
 func get_free_inventory_slot():
 	for islot in inventory:

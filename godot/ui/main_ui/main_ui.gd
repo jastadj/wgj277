@@ -69,3 +69,9 @@ func open_menu_scene(scene):
 # hide the stupid "forbidden" mouse cursor
 func can_drop_data(position, data):
 	return true
+
+func drop_data(position, data):
+	# remove the item from the source container
+	var titem = data["source"].remove_item()
+	player.drop_item(titem)
+	return true
