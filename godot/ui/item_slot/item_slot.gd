@@ -1,67 +1,64 @@
 extends MarginContainer
 
-var item_reference = null
-var main_ui
-var mouse_entered = false
+var _main_ui
+var _item_container = null
 
 func _ready():
 	
-	main_ui = get_tree().current_scene.get_node("CanvasLayer/main_ui")
+	_main_ui = get_tree().current_scene.get_node("CanvasLayer/main_ui")
 
 func _process(delta):
 	
-	if item_reference == null:
-		$background/item.texture = null
-	else:
-		$background/item.texture = item_reference.get_node("Sprite").texture
+	# is the container reference set?
+	if _item_container != null:
+		# if the container reference has no item in it, clear the texture
+		if _item_container.empty(): $background/item.texture = null
+		# otherwise display the item thats stored in the container
+		# note: the item must have a Sprite node called Sprite
+		else:
+			$background/item.texture = _item_container.item.get_node("Sprite").texture
 
-func get_item_sprite():
-	return $background/item.texture
+# set the item container reference
+# leaving this as a function in case we need signals or something
+func set_item_container(container):
+	_item_container = container
 
+# hide/unhide item is used during drag and drop
 func hide_item():
-	$background/item.hide()
-	
+	$background/item.visible = false	
 func unhide_item():
-	$background/item.show()
+	$background/item.visible = true
 
-func add_item(item):
-	if item_reference == null:
-		item_reference = item
-		$background/item.texture = item.get_sprite().texture
-
-func remove_item():
-	if item_reference == null: return null
-	var titem = item_reference
-	item_reference = null
-	$background/item.texture = null
-	return titem
-
+# get drag and drop data
 func get_drag_data(position):
+	if _item_container == null: return null
+	if _item_container.empty(): return null
 	
-	if item_reference == null: return null
+	var item_data = {}
+	item_data["source"] = _item_container
 	
-	var data = {}
-	data["item"] = item_reference
-	data["origin"] = self
-	
+	# instance the dragged item ui
 	var drag_preview = preload("res://ui/item_slot/drag_preview.tscn").instance()
-	drag_preview.texture = item_reference.get_sprite().texture
 	drag_preview.source_slot = self
+	drag_preview.texture = _item_container.item.get_node("Sprite").texture
 	get_tree().current_scene.get_node("CanvasLayer").add_child(drag_preview)
 	
-	return data
-	
+	return item_data
+
+# able to drop dragged items on this slot?  yes, only if container is valid
 func can_drop_data(position, data):
-	# stuff
+	if _item_container == null: return false
 	return true
 
+# when dropping an item on this slot
+# note: assuming that the item container is valid because of can_drop_data
 func drop_data(position, data):
-	# if this slot is not empty, swap
-	var source_slot = data["origin"]
-	if item_reference != null:
-		var current_item = item_reference
-		source_slot.item_reference = current_item
-	# otherwise, clear the source slot's item
-	else:
-		source_slot.item_reference = null
-	item_reference = data["item"]
+	# remove item from source container
+	var titem = data["source"].remove_item()
+	# if there is already an item in this slot, lets swap it
+	if !_item_container.empty():
+		var current_item = _item_container.remove_item()
+		data["source"].add_item(current_item)
+	# add the dropped item to the container
+	_item_container.add_item(titem)
+	return true
