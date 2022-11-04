@@ -53,12 +53,17 @@ func interact(obj):
 		pickup_item(obj)
 
 func pickup_item(item):
-	if item == null: return
+	if item == null:
+		print("error picking up item, item null")
+		return
 	if item.has_method("can_pickup"):
 		# are there free slots?
-		if !has_free_inventory(): return
-		# remove item from parent
-		item.get_parent().remove_child(item)
+		if !has_free_inventory():
+			print("unable to pickup item, no free inventory space")
+			return
+		# remove item from parent (if parent exists)
+		var item_parent = item.get_parent()
+		if item_parent: item.get_parent().remove_child(item)
 		for islot in _inventory_ui.get_children():
 			if islot.item_reference == null:
 				islot.add_item(item)
@@ -68,6 +73,7 @@ func drop_item(item):
 	var random_radius = 6 # random radius to drop the item
 	var objects = get_tree().current_scene.get_node("objects")
 	objects.add_child(item)
+	print("dropping item ", item.object_name)
 	item.position = position + Vector2( (randi()%random_radius) - (random_radius/2), (randi()%random_radius) - (random_radius/2) )
 		
 func has_free_inventory():
