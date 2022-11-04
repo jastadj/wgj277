@@ -1,7 +1,7 @@
 extends "res://objects/game_object.gd"
 
 func _ready():
-	object_name = "Boiler"
+	object_name = "Centrifuge"
 
 # simple method checker
 # can be used by the main ui to check all the overlapping areas that the player

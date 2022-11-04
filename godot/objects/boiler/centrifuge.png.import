@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/boiler.png-413f0685435cdcc1a9ebdfb2bb71e6bc.stex"
+path="res://.import/centrifuge.png-7792a6945037b6312122ed5e68c2eb56.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/boiler/boiler.png"
-dest_files=[ "res://.import/boiler.png-413f0685435cdcc1a9ebdfb2bb71e6bc.stex" ]
+source_file="res://objects/boiler/centrifuge.png"
+dest_files=[ "res://.import/centrifuge.png-7792a6945037b6312122ed5e68c2eb56.stex" ]
 
 [params]
 

@@ -7,10 +7,15 @@ var inventory_slots = 3
 var _inventory_ui
 var _interaction_target = null
 
+var anim_statemachine
+
 func _ready():
 	
 	yield(get_tree().current_scene, "ready")
 	_inventory_ui = get_tree().current_scene.get_node("CanvasLayer/main_ui/inventory")
+	
+	anim_statemachine = $AnimationTree.get("parameters/StateMachine/playback")
+	anim_statemachine.start("down_idle")
 
 func _physics_process(delta):
 	
@@ -33,8 +38,14 @@ func handle_input(delta):
 	
 	if Input.is_action_pressed("ui_up"): move_dir.y -= 1
 	if Input.is_action_pressed("ui_down"): move_dir.y += 1
+	
 	if Input.is_action_pressed("ui_left"): move_dir.x -= 1
 	if Input.is_action_pressed("ui_right"): move_dir.x += 1
+	
+	if move_dir.x < 0: anim_statemachine.start("left_idle")
+	elif move_dir.x > 0: anim_statemachine.start("right_idle")
+	if move_dir.y < 0: anim_statemachine.start("up_idle")
+	elif move_dir.y > 0: anim_statemachine.start("down_idle")
 	
 	move_and_slide(move_dir*move_speed*delta)
 
