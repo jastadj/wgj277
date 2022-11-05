@@ -12,6 +12,8 @@ extents = Vector2( 7.5, 2.5 )
 
 [node name="centrifuge" type="StaticBody2D"]
 script = ExtResource( 1 )
+object_name = "Centrifuge"
+has_action = true
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.5, -13.5 )

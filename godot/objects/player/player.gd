@@ -65,11 +65,12 @@ func get_interaction_areas():
 func interact(obj):
 	if obj == null: return
 	
-	# can "use" the object like a processor, computer, etc...
-	if obj.has_method("has_action"):
-		print("using object ", obj.object_name)
-	# can pickup the object like an item
-	elif obj.has_method("is_gameitem"):
+	# is this a static object with interaction?
+	if obj.has_method("is_static_object"):
+		if obj.has_action:
+			print("using object ", obj.object_name)
+	# is this a game item?
+	elif obj.has_method("is_game_item"):
 		if obj.can_pickup: pickup_item(obj)
 		
 func pickup_item(obj):

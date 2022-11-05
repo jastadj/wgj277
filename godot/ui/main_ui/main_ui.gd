@@ -32,23 +32,36 @@ func _input(event):
 	
 func _process(delta):
 	
+	# get all the areas that the player is touching
 	var interaction_areas = player.get_interaction_areas()
+	
+	# clear the players current interaction target
 	player._interaction_target = null
 	$interaction_ui.hide()
+	
+	# check each area the player is touching, first interactable object found
+	# will be set as the players current interaction target
 	for area in interaction_areas:
-		if area.get_parent().has_method("has_action"):
-			$interaction_ui.show()
-			$interaction_ui.text = str("Use ",area.get_parent().object_name)
-			player._interaction_target = area.get_parent()
-			break
-		# if the object is a game item
-		elif area.get_parent().has_method("is_gameitem"):
-			# if the item can be picked up
-			if area.get_parent().can_pickup:
-				$interaction_ui.show()
-				$interaction_ui.text = str("Pickup ", area.get_parent().object_name)
-				player._interaction_target = area.get_parent()
-				break
+		var obj = area.get_parent()
+		
+		# is this area part of a game object?
+		if obj.has_method("is_game_object"):
+			# is this game object static?
+			if obj.has_method("is_static_object"):
+				# does this static object have an action?
+				if obj.has_action:
+					$interaction_ui.show()
+					$interaction_ui.text = str("Use ",obj.object_name)
+					player._interaction_target = obj
+					break
+			# is this game object an item?
+			elif obj.has_method("is_game_item"):
+				# can it be picked up?
+				if obj.can_pickup:
+					$interaction_ui.show()
+					$interaction_ui.text = str("Pickup ", obj.object_name)
+					player._interaction_target = obj
+					break
 			
 	# if any ui menus are open, disable player input
 	if $open_menus.get_child_count() != 0: player.allow_input = false

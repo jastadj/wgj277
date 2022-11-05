@@ -13,19 +13,19 @@ margin_bottom = 600.0
 script = ExtResource( 2 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-margin_left = 289.0
+margin_left = 266.0
 margin_top = 280.0
-margin_right = 735.0
+margin_right = 758.0
 margin_bottom = 320.0
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 439.0
+margin_right = 485.0
 margin_bottom = 33.0
 
 [node name="header" type="HBoxContainer" parent="PanelContainer/GridContainer"]
-margin_right = 432.0
+margin_right = 478.0
 margin_bottom = 26.0
 
 [node name="name" type="VBoxContainer" parent="PanelContainer/GridContainer/header"]
@@ -39,21 +39,21 @@ rect_min_size = Vector2( 74, 0 )
 custom_fonts/font = SubResource( 2 )
 text = "Name"
 
-[node name="boil" type="VBoxContainer" parent="PanelContainer/GridContainer/header"]
+[node name="centrifuge" type="VBoxContainer" parent="PanelContainer/GridContainer/header"]
 margin_left = 78.0
-margin_right = 152.0
+margin_right = 198.0
 margin_bottom = 26.0
 
-[node name="boil" type="Label" parent="PanelContainer/GridContainer/header/boil"]
-margin_right = 74.0
+[node name="centrifuge" type="Label" parent="PanelContainer/GridContainer/header/centrifuge"]
+margin_right = 120.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 74, 0 )
 custom_fonts/font = SubResource( 2 )
-text = "Boil"
+text = "Centrifuge"
 
 [node name="incinerate" type="VBoxContainer" parent="PanelContainer/GridContainer/header"]
-margin_left = 156.0
-margin_right = 276.0
+margin_left = 202.0
+margin_right = 322.0
 margin_bottom = 26.0
 
 [node name="incinerate" type="Label" parent="PanelContainer/GridContainer/header/incinerate"]
@@ -64,8 +64,8 @@ custom_fonts/font = SubResource( 2 )
 text = "Incinerate"
 
 [node name="juice" type="VBoxContainer" parent="PanelContainer/GridContainer/header"]
-margin_left = 280.0
-margin_right = 354.0
+margin_left = 326.0
+margin_right = 400.0
 margin_bottom = 26.0
 
 [node name="juice" type="Label" parent="PanelContainer/GridContainer/header/juice"]
@@ -76,8 +76,8 @@ custom_fonts/font = SubResource( 2 )
 text = "Juice"
 
 [node name="grind" type="VBoxContainer" parent="PanelContainer/GridContainer/header"]
-margin_left = 358.0
-margin_right = 432.0
+margin_left = 404.0
+margin_right = 478.0
 margin_bottom = 26.0
 
 [node name="grind" type="Label" parent="PanelContainer/GridContainer/header/grind"]

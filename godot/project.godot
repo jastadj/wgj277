@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "game_object",
+"language": "GDScript",
+"path": "res://objects/game_object.gd"
+} ]
+_global_script_class_icons={
+"game_object": ""
+}
+
 [application]
 
 config/name="Wgj 277"
