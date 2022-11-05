@@ -41,11 +41,14 @@ func _process(delta):
 			$interaction_ui.text = str("Use ",area.get_parent().object_name)
 			player._interaction_target = area.get_parent()
 			break
-		elif area.get_parent().has_method("can_pickup"):
-			$interaction_ui.show()
-			$interaction_ui.text = str("Pickup ", area.get_parent().object_name)
-			player._interaction_target = area.get_parent()
-			break
+		# if the object is a game item
+		elif area.get_parent().has_method("is_gameitem"):
+			# if the item can be picked up
+			if area.get_parent().can_pickup:
+				$interaction_ui.show()
+				$interaction_ui.text = str("Pickup ", area.get_parent().object_name)
+				player._interaction_target = area.get_parent()
+				break
 			
 	# if any ui menus are open, disable player input
 	if $open_menus.get_child_count() != 0: player.allow_input = false

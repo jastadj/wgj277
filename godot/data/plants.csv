@@ -1,8 +1,8 @@
-name,boil,incinerate,juice,grind,value,sprite
-Averum Infernius,0,0,0,0,0,res://objects/plants/fireplant.png
-Plant 2,0,0,0,0,0,res://objects/plants/genericflower.png
-Plant 3,0,0,0,0,0,res://objects/plants/genericflower.png
-Plant 4,0,0,0,0,0,res://objects/plants/genericflower.png
+name,centrifuge,incinerate,juice,grind,value,sprite
+Averum Infernius,0,FIRE_EXPLOSION,FIRE_LAVA,0,0,res://objects/plants/plant_fire.png
+Hydrogenous Bulb,0,GAS_COLORS,0,0,0,res://objects/plants/plant_gas.png
+Hyperborean Lotus,0,ICE_WATER,0,0,0,res://objects/plants/plant_ice.png
+Botuli Vulgaris,0,TOXIC_GAS,0,0,0,res://objects/plants/plant_toxic.png
 Plant 5,0,0,0,0,0,res://objects/plants/genericflower.png
 Plant 6,0,0,0,0,0,res://objects/plants/genericflower.png
 Plant 7,0,0,0,0,0,res://objects/plants/genericflower.png

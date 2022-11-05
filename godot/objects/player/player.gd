@@ -69,8 +69,8 @@ func interact(obj):
 	if obj.has_method("has_action"):
 		print("using object ", obj.object_name)
 	# can pickup the object like an item
-	elif obj.has_method("can_pickup"):
-		pickup_item(obj)
+	elif obj.has_method("is_gameitem"):
+		if obj.can_pickup: pickup_item(obj)
 		
 func pickup_item(obj):
 	var inv_slot = get_free_inventory_slot()
