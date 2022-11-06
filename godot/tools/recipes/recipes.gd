@@ -2,6 +2,7 @@ extends Node2D
 
 var processors = []
 var items = []
+onready var menus = $CanvasLayer/main_ui/menus
 
 func _ready():
 	
@@ -35,5 +36,5 @@ func create_recipe():
 func item_select_test():
 	if menus_open(): return
 	var newmenu = preload("res://tools/recipes/item_Selector.tscn").instance()
-	newmenu.items = items.duplicate()
+	newmenu.items = items
 	$CanvasLayer/main_ui/menus.add_child(newmenu)

@@ -1,6 +1,7 @@
 extends Node
 
 var message_queue = []
+onready var background_container = load("res://engine/item_container.gd").new()
 
 func _ready():
 	

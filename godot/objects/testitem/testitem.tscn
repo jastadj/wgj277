@@ -9,7 +9,6 @@ radius = 9.0
 [node name="testitem" type="Node2D"]
 script = ExtResource( 1 )
 object_name = "Test Item"
-item_id = "TEST_ITEM"
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -5 )

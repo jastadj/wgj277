@@ -1,11 +1,16 @@
 extends GridContainer
 
 var item_containers = []
-var items = []
+var items
 
 signal item_selected
 
 func _ready():
+	
+	if items == null:
+		printerr("Error opening item selector, items = null")
+		queue_free()
+		return
 	
 	for i in items:
 		var container = preload("res://engine/item_container.gd").new()
@@ -14,7 +19,7 @@ func _ready():
 		slot.set_item_container(container)
 		container.add_item(i.duplicate())
 		slot.locked = true
-		slot.connect("pressed", self, "on_item_selected")
+		slot.connect("lmb_pressed", self, "on_item_selected")
 		add_child(slot)
 
 func on_item_selected(obj):

@@ -17,6 +17,14 @@ func remove_item():
 	item = null
 	return titem
 
+func can_stack_with(sitem):
+	if sitem.filename == item.filename:
+		var stacksize = item.stack + sitem.stack
+		if item.max_stack >= stacksize:
+			return true
+	return false
+	
+
 func add_item(item_to_add):
 	
 	# if this container has no item
@@ -27,7 +35,13 @@ func add_item(item_to_add):
 		# set the item reference
 		item = item_to_add
 		return true
-	# the container already has an item in it
+	# the container has an item already in it, try to stack
 	else:
-		return false
-	 
+		# if they can stack, stack them
+		if can_stack_with(item_to_add):
+			item.stack += item_to_add.stack
+			item_to_add.queue_free()
+			return true
+	# unable to add item
+	return false
+

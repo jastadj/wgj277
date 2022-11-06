@@ -74,8 +74,19 @@ func interact(obj):
 		if obj.can_pickup: pickup_item(obj)
 		
 func pickup_item(obj):
-	var inv_slot = get_free_inventory_slot()
+	var inv_slot = null
+	
+	# check for any slots we can combine with
+	for islot in inventory:
+		if !islot.empty():
+			if islot.can_stack_with(obj):
+				inv_slot = islot
+	# if no combinable slots found, find an empty slot
+	if inv_slot == null:
+		inv_slot = get_free_inventory_slot(obj)
+	# if no empty slots found, fail to pickup item
 	if inv_slot == null: return false
+	# otherwise add the item to the slot
 	inv_slot.add_item(obj)
 	return true
 
@@ -89,7 +100,7 @@ func drop_item(obj):
 	get_tree().current_scene.get_node("objects").add_child(obj)
 	return true
 	
-func get_free_inventory_slot():
+func get_free_inventory_slot(obj = null):
 	for islot in inventory:
 		if islot.empty(): return islot
 	return null

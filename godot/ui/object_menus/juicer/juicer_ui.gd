@@ -7,6 +7,9 @@ onready var output_slot = $contents/HBoxContainer/output
 
 func _ready():
 	
+	# disable dropping items on the output slot
+	output_slot.drop_disabled = true
+	
 	# connect the item slots to the juicer machine
 	if object_owner:
 		input_slot.set_item_container(object_owner.input_slot)
