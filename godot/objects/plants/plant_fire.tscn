@@ -8,7 +8,9 @@ radius = 9.0
 
 [node name="plant_item" type="Node2D"]
 script = ExtResource( 2 )
+object_name = "Averum Infernus"
 item_id = "PLANT_FIRE"
+is_ingredient = true
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -6 )

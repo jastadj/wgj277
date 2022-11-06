@@ -27,7 +27,8 @@ func _ready():
 func _input(event):
 	
 	if event.is_action_pressed("ui_cancel"):
-		if $open_menus.get_child_count() != 0:
+		# if menus are opened, close the last menu opened
+		if menus_opened():
 			$open_menus.get_children().back().queue_free()
 	
 func _process(delta):
@@ -64,26 +65,37 @@ func _process(delta):
 					break
 			
 	# if any ui menus are open, disable player input
-	if $open_menus.get_child_count() != 0: player.allow_input = false
+	# also, hide the interaction ui text
+	if menus_opened():
+		player.allow_input = false
+		$interaction_ui.hide()
 	else: player.allow_input = true
 		
 func on_testbutton_pressed():
 	Gamedata.add_message("This is a fairly long message but not too long.  Only for testing of course...")
 
+func menus_opened():
+	if $open_menus.get_child_count() != 0: return true
+	return false
 
-func open_menu_scene(scene):
+func open_menu_scene(scene, object_owner = null):
 	
 	# check if this menu is already open
 	for menu in $open_menus.get_children():
 		if menu.filename == scene.resource_path: return
 	
+	# instance the scene and add it to the main ui
 	var newscene = scene.instance()
+	# if an owner was provided, set the owner
+	if object_owner:
+		newscene.object_owner = object_owner
 	$open_menus.add_child(newscene)
 
 # allow drag an drop on main ui
 # this will allow dropping items on the ground and also
 # hide the stupid "forbidden" mouse cursor
 func can_drop_data(position, data):
+	return false
 	return true
 
 func drop_data(position, data):

@@ -4,13 +4,14 @@
 [ext_resource path="res://ui/item_slot/item_slot.gd" type="Script" id=2]
 
 [node name="item_slot" type="MarginContainer"]
-margin_right = 24.0
-margin_bottom = 12.0
-rect_min_size = Vector2( 24, 24 )
+rect_min_size = Vector2( 48, 48 )
 focus_mode = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource( 2 )
 
 [node name="background" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 centered = false
 

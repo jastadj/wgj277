@@ -20,7 +20,7 @@ func _ready():
 
 	# init inventory
 	var item_container = load("res://engine/item_container.gd")
-	for i in range(0, inventory_size):
+	for _i in range(0, inventory_size):
 		inventory.append(item_container.new())
 	inventory[1].add_item(preload("res://objects/testitem/testitem.tscn").instance())
 
@@ -68,7 +68,7 @@ func interact(obj):
 	# is this a static object with interaction?
 	if obj.has_method("is_static_object"):
 		if obj.has_action:
-			print("using object ", obj.object_name)
+			obj.activate()
 	# is this a game item?
 	elif obj.has_method("is_game_item"):
 		if obj.can_pickup: pickup_item(obj)
