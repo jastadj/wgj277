@@ -11,4 +11,8 @@ func _ready():
 	if object_owner:
 		input_slot.set_item_container(object_owner.input_slot)
 		output_slot.set_item_container(object_owner.output_slot)
-		
+	
+	$contents/button_process.connect("pressed", self, "_on_button_process_pressed")
+	
+func _on_button_process_pressed():
+	pass

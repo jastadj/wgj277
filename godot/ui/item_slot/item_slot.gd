@@ -2,6 +2,9 @@ extends MarginContainer
 
 var _main_ui
 var _item_container = null
+var locked = false
+
+signal pressed
 
 func _ready():
 	
@@ -18,6 +21,11 @@ func _process(delta):
 		else:
 			$background/item.texture = _item_container.item.get_node("Sprite").texture
 
+func _gui_input(event):
+	if event is InputEventMouseButton:
+		if event.pressed and event.button_index == BUTTON_LEFT:
+			emit_signal("pressed", self)
+
 # set the item container reference
 # leaving this as a function in case we need signals or something
 func set_item_container(container):
@@ -33,6 +41,7 @@ func unhide_item():
 func get_drag_data(position):
 	if _item_container == null: return null
 	if _item_container.empty(): return null
+	if locked: return null
 	
 	var item_data = {}
 	item_data["source"] = _item_container
@@ -62,3 +71,8 @@ func drop_data(position, data):
 	# add the dropped item to the container
 	_item_container.add_item(titem)
 	return true
+
+func get_item_name():
+	if _item_container == null: return null
+	if _item_container.empty(): return null
+	return _item_container.item.object_name

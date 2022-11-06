@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://tools/recipes/recipes.gd" type="Script" id=1]
+[ext_resource path="res://objects/juicer/juicer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/centrifuge/centrifuge.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/grinder/grinder.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/incinerator/incinerator.tscn" type="PackedScene" id=5]
+[ext_resource path="res://fonts/MOZART_0.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://objects/testitem/testitem.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/plants/plant_fire.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 6 )
+
+[node name="recipes" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="_processors" type="Node2D" parent="."]
+visible = false
+
+[node name="grinder" parent="_processors" instance=ExtResource( 4 )]
+
+[node name="incinerator" parent="_processors" instance=ExtResource( 5 )]
+
+[node name="centrifuge" parent="_processors" instance=ExtResource( 3 )]
+
+[node name="juicer" parent="_processors" instance=ExtResource( 2 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="main_ui" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="buttons" type="HBoxContainer" parent="CanvasLayer/main_ui"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -56.0
+margin_right = 384.0
+margin_bottom = -16.0
+custom_constants/separation = 32
+
+[node name="button_create_recipe" type="Button" parent="CanvasLayer/main_ui/buttons"]
+margin_right = 168.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 1 )
+text = "Create Recipe"
+
+[node name="button_items" type="Button" parent="CanvasLayer/main_ui/buttons"]
+margin_left = 200.0
+margin_right = 272.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 1 )
+text = "Items"
+
+[node name="menus" type="Control" parent="CanvasLayer/main_ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="_items" type="Node2D" parent="."]
+visible = false
+
+[node name="testitem" parent="_items" instance=ExtResource( 7 )]
+
+[node name="plant_fire" parent="_items" instance=ExtResource( 8 )]
