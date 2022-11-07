@@ -18,7 +18,7 @@ margin_bottom = 209.0
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 96.0
 margin_bottom = 14.0
-text = "Create Recipe"
+text = "Recipe Editor"
 
 [node name="processor" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 18.0
@@ -95,11 +95,11 @@ margin_top = 46.0
 margin_right = 96.0
 margin_bottom = 50.0
 
-[node name="create_recipe" type="Button" parent="VBoxContainer"]
+[node name="save_recipe" type="Button" parent="VBoxContainer"]
 margin_top = 158.0
 margin_right = 96.0
 margin_bottom = 178.0
-text = "Create"
+text = "Save"
 
 [node name="cancel" type="Button" parent="VBoxContainer"]
 margin_top = 182.0

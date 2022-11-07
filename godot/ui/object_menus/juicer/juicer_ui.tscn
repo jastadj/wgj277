@@ -4,7 +4,7 @@
 [ext_resource path="res://fonts/MOZART_0.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://ui/object_menus/juicer/juicer_ui.gd" type="Script" id=3]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 2 )
 
@@ -31,7 +31,7 @@ margin_right = 144.0
 margin_bottom = 26.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Juicer"
 align = 1
 
@@ -46,7 +46,7 @@ margin_right = 83.0
 margin_bottom = 26.0
 size_flags_horizontal = 6
 size_flags_vertical = 0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Input"
 align = 1
 
@@ -56,7 +56,7 @@ margin_right = 199.0
 margin_bottom = 26.0
 size_flags_horizontal = 6
 size_flags_vertical = 0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Output"
 align = 1
 
@@ -88,5 +88,5 @@ margin_top = 112.0
 margin_right = 217.0
 margin_bottom = 144.0
 focus_mode = 0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Process"

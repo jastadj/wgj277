@@ -8,6 +8,9 @@ onready var menus = $CanvasLayer/main_ui/menus
 
 func _ready():
 	
+	# load recipes from gamedata
+	recipes = Gamedata.recipes
+	
 	# create list of processors
 	for p in $_processors.get_children():
 		processors.append(p)
@@ -19,6 +22,8 @@ func _ready():
 	$CanvasLayer/main_ui/buttons/button_create_recipe.connect("pressed", self, "create_recipe")
 	$CanvasLayer/main_ui/buttons/button_save_recipes.connect("pressed", self, "save_recipes")
 	$CanvasLayer/main_ui/buttons/button_items.connect("pressed", self, "item_select_test")
+	
+	update_recipe_list()
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -54,9 +59,80 @@ func _on_recipe_created(recipe):
 	if !recipes.has(processor):
 		recipes[processor] = []
 	recipes[processor].append(recipe)
+	update_recipe_list()
+
+func _on_recipe_edited(original_recipe, new_recipe):
+	var processor = original_recipe.keys()[0]
+	# find the original recipe
+	for recipe in recipes[processor]:
+		if recipe == original_recipe[processor]:
+			recipe["inputs"] = new_recipe["inputs"]
+			recipe["outputs"] = new_recipe["outputs"]
+			print("Recipe updated.")
+			update_recipe_list()
+			return
+	
 
 func item_select_test():
 	if menus_open(): return
 	var newmenu = preload("res://tools/recipes/item_Selector.tscn").instance()
 	newmenu.items = items
+	$CanvasLayer/main_ui/menus.add_child(newmenu)
+
+func update_recipe_list():
+	var recipe_list = $CanvasLayer/main_ui/recipes_panel/ScrollContainer/recipe_list
+	var recipe_entry = $CanvasLayer/main_ui/recipes_panel/a_recipe
+	
+	# clear list
+	for c in recipe_list.get_children():
+		recipe_list.remove_child(c)
+		c.queue_free()
+	
+	# create entries from recipes
+	for processor in recipes.keys():
+		var processor_instance = load(processor).instance()
+		var processor_name = processor_instance.object_name
+		
+		# for each recipe of the processor, create an entry
+		for recipe in recipes[processor]:
+			var newentry = recipe_entry.duplicate()
+			newentry.visible = true
+			newentry.get_node("processor").text = processor_name
+			# connect buttons
+			newentry.get_node("delete").connect("pressed", self, "on_delete_recipe", [processor, recipe])
+			newentry.get_node("edit").connect("pressed", self, "on_edit_recipe", [processor, recipe])
+			
+			#inputs
+			for input in recipe["inputs"]:
+				# create item, container, and ui slot
+				var newcontainer = load("res://engine/item_container.gd").new()
+				var newslot = preload("res://ui/item_slot/item_slot.tscn").instance()
+				var inputitem = load(input).instance()
+				newslot._item_container = newcontainer
+				newcontainer.add_item(inputitem)
+				newentry.get_node("input_list").add_child(newslot)
+			# outputs
+			for output in recipe["outputs"]:
+				# create item, container, and ui slot
+				var newcontainer = load("res://engine/item_container.gd").new()
+				var newslot = preload("res://ui/item_slot/item_slot.tscn").instance()
+				var outputitem = load(output).instance()
+				newslot._item_container = newcontainer
+				newcontainer.add_item(outputitem)
+				newentry.get_node("output_list").add_child(newslot)
+			# add entry to recipe list
+			recipe_list.add_child(newentry)
+
+func on_delete_recipe(processor, recipe):
+	for precipes in recipes[processor]:
+		if precipes == recipe:
+			recipes[processor].erase(precipes)
+			update_recipe_list()
+			return true
+	return false
+
+func on_edit_recipe(processor, recipe):
+	var newmenu = preload("res://tools/recipes/recipe_editor.tscn").instance()
+	newmenu._editing_recipe = {processor:recipe}
+	newmenu.connect("recipe_edited", self, "_on_recipe_edited")
 	$CanvasLayer/main_ui/menus.add_child(newmenu)

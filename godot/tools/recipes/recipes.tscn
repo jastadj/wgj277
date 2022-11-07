@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://tools/recipes/recipes.gd" type="Script" id=1]
 [ext_resource path="res://objects/juicer/juicer.tscn" type="PackedScene" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://objects/plants/plant_fire.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 6 )
 
@@ -63,14 +67,93 @@ margin_bottom = 40.0
 custom_fonts/font = SubResource( 1 )
 text = "Items"
 
+[node name="recipes_panel" type="Panel" parent="CanvasLayer/main_ui"]
+margin_left = 24.0
+margin_top = 17.0
+margin_right = 996.0
+margin_bottom = 524.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/main_ui/recipes_panel"]
+margin_left = 6.0
+margin_top = 9.0
+margin_right = 960.0
+margin_bottom = 497.0
+
+[node name="recipe_list" type="VBoxContainer" parent="CanvasLayer/main_ui/recipes_panel/ScrollContainer"]
+
+[node name="a_recipe" type="HBoxContainer" parent="CanvasLayer/main_ui/recipes_panel"]
+visible = false
+margin_left = 6.0
+margin_top = 9.0
+margin_right = 442.0
+margin_bottom = 41.0
+
+[node name="edit" type="Button" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_right = 60.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "Edit"
+
+[node name="delete" type="Button" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_left = 64.0
+margin_right = 112.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "Del"
+
+[node name="VSeparator3" type="VSeparator" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_left = 228.0
+margin_right = 232.0
+margin_bottom = 32.0
+
+[node name="processor" type="Label" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_left = 116.0
+margin_top = 3.0
+margin_right = 224.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 2 )
+text = "processor"
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_left = 228.0
+margin_right = 232.0
+margin_bottom = 32.0
+
+[node name="inputs" type="Label" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_left = 236.0
+margin_top = 3.0
+margin_right = 320.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 2 )
+text = "Inputs:"
+
+[node name="input_list" type="HBoxContainer" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_left = 324.0
+margin_right = 324.0
+margin_bottom = 32.0
+
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_left = 328.0
+margin_right = 332.0
+margin_bottom = 32.0
+
+[node name="outputs" type="Label" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_left = 336.0
+margin_top = 3.0
+margin_right = 432.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 2 )
+text = "Outputs:"
+
+[node name="output_list" type="HBoxContainer" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_left = 436.0
+margin_right = 436.0
+margin_bottom = 32.0
+
 [node name="menus" type="Control" parent="CanvasLayer/main_ui"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/main_ui"]
-margin_right = 40.0
-margin_bottom = 14.0
 
 [node name="_items" type="Node2D" parent="."]
 visible = false
