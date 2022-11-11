@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Wgj 277"
-run/main_scene="res://scenes/game/game.tscn"
+run/main_scene="res://scenes/main_menu/main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

@@ -4,6 +4,7 @@ var message_queue = []
 var recipes
 onready var background_container = load("res://engine/item_container.gd").new()
 
+var current_game = null
 var settings = {"tooltip_delay":500}
 
 func _ready():
