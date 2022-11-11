@@ -3,6 +3,7 @@ extends Node2D
 class_name game_object
 
 export(String) var object_name = "No Name"
+export(String) var object_description = "No description."
 
 func _ready():
 	if object_name == "No Name":

@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/tooltip/tooltip_item.gd" type="Script" id=1]
+[ext_resource path="res://fonts/MOZART_0.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 2 )
+
+[node name="tooltip_item" type="PanelContainer"]
+margin_right = 181.0
+margin_bottom = 89.0
+mouse_filter = 2
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 174.0
+margin_bottom = 82.0
+
+[node name="item_name" type="Label" parent="VBoxContainer"]
+margin_right = 167.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 1 )
+text = "name"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 21.0
+margin_right = 167.0
+margin_bottom = 25.0
+
+[node name="properties" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 29.0
+margin_right = 167.0
+margin_bottom = 46.0
+
+[node name="item_property" type="Label" parent="VBoxContainer/properties"]
+margin_right = 167.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 1 )
+text = "property"
+
+[node name="item_description" type="Label" parent="VBoxContainer"]
+margin_top = 50.0
+margin_right = 167.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 1 )
+text = "description"
+autowrap = true

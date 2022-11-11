@@ -1,8 +1,10 @@
 extends Node
 
 var message_queue = []
-onready var recipes = load_recipes("res://data/recipes.json")
+var recipes
 onready var background_container = load("res://engine/item_container.gd").new()
+
+var settings = {"tooltip_delay":500}
 
 func _ready():
 	
@@ -14,6 +16,9 @@ func _ready():
 	forbidden_cursor_image.fill(Color(1,1,1,0.01))
 	forbidden_cursor.create_from_image(forbidden_cursor_image)
 	Input.set_custom_mouse_cursor(forbidden_cursor, Input.CURSOR_FORBIDDEN)
+	
+	# load recipes
+	recipes = load_recipes("res://data/recipes.json")
 
 func load_recipes(tfilename):
 	var recipesdict = {}

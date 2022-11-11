@@ -4,6 +4,7 @@ var _main_ui
 var _item_container = null
 var locked = false # don't allow adding/removing items
 var drop_disabled = false
+var tooltip_timer = null
 
 signal lmb_pressed
 signal rmb_pressed
@@ -93,9 +94,34 @@ func drop_data(position, data):
 			data["source"].add_item(current_item)
 	# add the dropped item to the container
 	_item_container.add_item(titem)
+	
+	# reset tooltip timer
+	if is_instance_valid(tooltip_timer): tooltip_timer.reset()
+	
 	return true
 
 func get_item_name():
 	if _item_container == null: return null
 	if _item_container.empty(): return null
 	return _item_container.item.object_name
+
+
+func show_tooltip():
+	if !_item_container.empty():
+		var tooltip = preload("res://ui/tooltip/tooltip_item.tscn").instance()
+		tooltip.item = _item_container.item
+		tooltip.hide()
+		get_tree().current_scene.get_node("CanvasLayer").add_child(tooltip)
+		yield(get_tree(), "idle_frame")
+		tooltip.show()
+		tooltip_timer.connect("tree_exited", tooltip, "queue_free")
+		
+
+func _on_item_slot_mouse_entered():
+	tooltip_timer = preload("res://tools/timer.gd").new(Gamedata.settings["tooltip_delay"])
+	add_child(tooltip_timer)
+	tooltip_timer.connect("timeout", self, "show_tooltip")
+
+func _on_item_slot_mouse_exited():
+	if is_instance_valid(tooltip_timer):
+		tooltip_timer.queue_free()
