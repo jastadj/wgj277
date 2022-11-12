@@ -19,6 +19,10 @@ func _ready():
 	anim_statemachine.start("down_idle")
 
 	# init inventory
+	_init_inventory(inventory_size)
+
+func _init_inventory(isize):
+	inventory = []
 	var item_container = load("res://engine/item_container.gd")
 	for _i in range(0, inventory_size):
 		inventory.append(item_container.new())
@@ -33,11 +37,41 @@ func _input(event):
 	
 	# if allowing player input, e.g. when no menus are open
 	if allow_input:
-		if event.is_action_pressed("ui_cancel"): get_tree().quit()
-		elif event.is_action_pressed("ui_accept"): interact(_interaction_target)
+		if event.is_action_pressed("ui_accept"): interact(_interaction_target)
 	
 # just a simple method checker
 func is_player(): return true
+
+# get player save state
+func save_player():
+	var pdata = {"inventory":[]}
+	
+	# save inventory
+	for islot in inventory:
+		var idata = {}
+		if !islot.empty():
+			idata["item"] = islot.item.filename
+			idata["stack"] = islot.item.stack
+		pdata["inventory"].append(idata)
+	
+	# save position
+	pdata["position"] = {"x":position.x, "y":position.y}
+	
+	return pdata
+# load player from save state
+func load_player(pdata):
+	
+	# load inventory
+	_init_inventory(pdata["inventory"].size())
+	for i in range(0,pdata["inventory"].size()):
+		var islot = pdata["inventory"][i]
+		if !islot.empty():
+			var newitem = load(islot["item"]).instance()
+			newitem.stack = islot["stack"]
+			inventory[i].item = newitem
+	# load position
+	position = Vector2(pdata["position"]["x"], pdata["position"]["y"])
+			
 
 # movement input
 func handle_input(delta):

@@ -1,13 +1,19 @@
 extends Node
 
 var message_queue = []
-var recipes
-onready var background_container = load("res://engine/item_container.gd").new()
 
-var current_game = null
+var settings_file = "user://settings.json"
+var save_file = "user://save1.json"
+
+onready var background_container = load("res://engine/item_container.gd").new()
 var settings = {"tooltip_delay":500}
+var recipes
 
 func _ready():
+	
+	# load settings
+	# if unable to load settings, save the current default settings to file
+	if !load_settings(): save_settings()
 	
 	# init forbidden mouse cursor
 	# this is to hide the mouse cursor when drag and drop is forbidden
@@ -20,6 +26,37 @@ func _ready():
 	
 	# load recipes
 	recipes = load_recipes("res://data/recipes.json")
+
+func save_settings(file_name = settings_file):
+	print("Saving settings to file:", file_name)
+	var file = File.new()
+	if !file.open(file_name, File.WRITE) == OK:
+		printerr("Error saving settings to file:", file_name)
+		return false
+	file.store_string(JSON.print(settings))
+	file.close()
+	return true
+	
+func load_settings(file_name = settings_file):
+	print("Loading settings from file:", file_name)
+	var file = File.new()
+	if !file.open(file_name, File.READ) == OK:
+		printerr("Error loading settings from file:", file_name)
+		return false
+	var filestr = file.get_line()
+	if filestr.empty():
+		printerr("Settings file is invalid!")
+		return false
+	var loaded_settings = JSON.parse(filestr).result
+	settings.merge(loaded_settings, true)
+	file.close()
+	return true
+
+func save_game(file_name = save_file):
+	pass
+	
+func load_game(file_name = save_file):
+	pass
 
 func load_recipes(tfilename):
 	var recipesdict = {}
@@ -117,5 +154,5 @@ func process_recipe(processor, inputs, outputs):
 func add_message(msg):
 	message_queue.push_back(msg)
 	
-func on_tree_changed():
-	print("tree changed")
+
+	

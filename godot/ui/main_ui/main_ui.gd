@@ -3,6 +3,7 @@ extends Control
 var player
 
 var plants_ui_scene = preload("res://ui/plants/plants.tscn")
+var escape_menu_scene = preload("res://ui/escape_menu/escape_menu.tscn")
 
 func _ready():
 	
@@ -30,6 +31,9 @@ func _input(event):
 		# if menus are opened, close the last menu opened
 		if menus_opened():
 			$open_menus.get_children().back().queue_free()
+		else:
+			var escape_menu = escape_menu_scene.instance()
+			$open_menus.add_child(escape_menu)
 	
 func _process(delta):
 	
