@@ -2,6 +2,8 @@ extends Node
 
 var message_queue = []
 
+var current_game = {}
+
 var settings_file = "user://settings.json"
 var save_file = "user://save1.json"
 
@@ -51,6 +53,12 @@ func load_settings(file_name = settings_file):
 	settings.merge(loaded_settings, true)
 	file.close()
 	return true
+
+func new_game():
+	current_game = {}
+	current_game["player"] = preload("res://objects/player/player.tscn").instance()
+	current_game["current_map"] = "res://scenes/game/maps/test_map/test_map.tscn"
+
 
 func save_game(file_name = save_file):
 	pass

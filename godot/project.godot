@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "game_object",
 "language": "GDScript",
 "path": "res://objects/game_object.gd"
+}, {
+"base": "Node2D",
+"class": "map",
+"language": "GDScript",
+"path": "res://scenes/game/maps/map.gd"
 } ]
 _global_script_class_icons={
-"game_object": ""
+"game_object": "",
+"map": ""
 }
 
 [application]

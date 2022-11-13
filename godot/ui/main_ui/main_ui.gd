@@ -12,14 +12,14 @@ func _ready():
 	$plants.connect("pressed", self, "open_menu_scene", [plants_ui_scene])
 	
 	yield(get_tree().current_scene, "ready")
-	player = get_tree().current_scene.get_node("objects/player")
+	player = Gamedata.current_game["player"]
 	
 	# init player inventory slots
 	var item_slot = preload("res://ui/item_slot/item_slot.tscn")
 	for c in $inventory.get_children():
 		$inventory.remove_child(c)
 		c.queue_free()
-	for i in range(0, player.inventory.size()):
+	for i in range(0, player.inventory_size):
 		var newslot = item_slot.instance()
 		newslot.set_item_container(player.inventory[i])
 		$inventory.add_child(newslot)

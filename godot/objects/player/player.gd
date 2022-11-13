@@ -10,16 +10,15 @@ var _interaction_target = null
 
 var anim_statemachine
 
+func _init():
+	# init inventory
+	_init_inventory(inventory_size)
+
 func _ready():
-	
-	yield(get_tree().current_scene, "ready")
-	
+		
 	# get animation statemachine reference
 	anim_statemachine = $AnimationTree.get("parameters/StateMachine/playback")
 	anim_statemachine.start("down_idle")
-
-	# init inventory
-	_init_inventory(inventory_size)
 
 func _init_inventory(isize):
 	inventory = []

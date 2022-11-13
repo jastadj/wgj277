@@ -17,6 +17,7 @@ func _ready():
 
 
 func _on_new_game_pressed():
+	Gamedata.new_game()
 	get_tree().change_scene("res://scenes/game/game.tscn")
 
 
