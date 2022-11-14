@@ -23,3 +23,8 @@ func _on_new_game_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+
+func _on_continue_game_pressed():
+	if Gamedata.load_game():
+		get_tree().change_scene("res://scenes/game/game.tscn")

@@ -12,8 +12,8 @@ func _ready():
 	
 	# connect the item slots to the juicer machine
 	if object_owner:
-		input_slot.set_item_container(object_owner.input_slot)
-		output_slot.set_item_container(object_owner.output_slot)
+		input_slot.set_item_container(object_owner.inventory[0])
+		output_slot.set_item_container(object_owner.inventory[1])
 	
 	$contents/button_process.connect("pressed", self, "_on_button_process_pressed")
 	

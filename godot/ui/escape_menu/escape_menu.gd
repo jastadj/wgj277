@@ -12,7 +12,7 @@ func _input(event):
 		queue_free()
 
 func _on_save_button_pressed():
-	pass # Replace with function body.
+	Gamedata.save_game()
 
 
 func _on_quit_game_button_pressed():

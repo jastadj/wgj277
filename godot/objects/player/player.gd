@@ -43,34 +43,20 @@ func is_player(): return true
 
 # get player save state
 func save_player():
-	var pdata = {"inventory":[]}
-	
-	# save inventory
-	for islot in inventory:
-		var idata = {}
-		if !islot.empty():
-			idata["item"] = islot.item.filename
-			idata["stack"] = islot.item.stack
-		pdata["inventory"].append(idata)
-	
+	var pdata = {"inventory":Gamedata.save_item_array(inventory)}	
 	# save position
 	pdata["position"] = {"x":position.x, "y":position.y}
-	
 	return pdata
+	
 # load player from save state
 func load_player(pdata):
 	
 	# load inventory
 	_init_inventory(pdata["inventory"].size())
-	for i in range(0,pdata["inventory"].size()):
-		var islot = pdata["inventory"][i]
-		if !islot.empty():
-			var newitem = load(islot["item"]).instance()
-			newitem.stack = islot["stack"]
-			inventory[i].item = newitem
+	inventory = Gamedata.load_item_array(pdata["inventory"])
 	# load position
 	position = Vector2(pdata["position"]["x"], pdata["position"]["y"])
-			
+	return true
 
 # movement input
 func handle_input(delta):

@@ -25,3 +25,21 @@ func is_product():
 		for recipe in Gamedata.recipes[processor]:
 			if recipe["outputs"].has(filename): return true
 	return false
+
+func _save_item():
+	var object = _save_object()
+	object["stack"] = stack
+	return object
+	
+func _load_item(object):
+	if !_load_object(object): return false
+	stack = int(object["stack"])
+	return true
+
+# redefined save for items
+func save_object():
+	return _save_item()
+	
+# redefined load for items
+func load_object(object):
+	return _load_item(object)

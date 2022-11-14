@@ -56,4 +56,5 @@ custom_fonts/font = SubResource( 2 )
 text = "Quit"
 
 [connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/new_game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/continue_game" to="." method="_on_continue_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/quit" to="." method="_on_quit_pressed"]
