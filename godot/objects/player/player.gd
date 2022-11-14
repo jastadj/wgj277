@@ -116,7 +116,7 @@ func drop_item(obj):
 	if obj.get_parent():
 		obj.get_parent().remove_child(obj)
 	obj.position = global_position + rand_drop_pos
-	get_tree().current_scene.get_node("objects").add_child(obj)
+	get_tree().current_scene.get_node("map/objects").add_child(obj)
 	return true
 	
 func get_free_inventory_slot(obj = null):

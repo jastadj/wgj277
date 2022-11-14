@@ -99,7 +99,6 @@ func open_menu_scene(scene, object_owner = null):
 # this will allow dropping items on the ground and also
 # hide the stupid "forbidden" mouse cursor
 func can_drop_data(position, data):
-	return false
 	return true
 
 func drop_data(position, data):
