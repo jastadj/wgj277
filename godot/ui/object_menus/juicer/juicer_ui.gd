@@ -18,4 +18,5 @@ func _ready():
 	$contents/button_process.connect("pressed", self, "_on_button_process_pressed")
 	
 func _on_button_process_pressed():
-	Gamedata.process_recipe(object_owner.filename, [input_slot._item_container],[output_slot._item_container])
+	#Gamedata.process_recipe(object_owner.filename, [input_slot._item_container],[output_slot._item_container])
+	pass

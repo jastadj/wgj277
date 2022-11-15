@@ -1,6 +1,6 @@
 extends Node2D
 
-var recipe_file = "res://data/recipes.json"
+var recipe_file = Crafting.RECIPE_FILE
 var processors = []
 var items = []
 var recipes = {}
@@ -9,7 +9,7 @@ onready var menus = $CanvasLayer/main_ui/menus
 func _ready():
 	
 	# load recipes from gamedata
-	recipes = Gamedata.recipes
+	recipes = Crafting.recipes
 	
 	# create list of processors
 	for p in $_processors.get_children():
@@ -22,6 +22,7 @@ func _ready():
 	$CanvasLayer/main_ui/buttons/button_create_recipe.connect("pressed", self, "create_recipe")
 	$CanvasLayer/main_ui/buttons/button_save_recipes.connect("pressed", self, "save_recipes")
 	$CanvasLayer/main_ui/buttons/button_items.connect("pressed", self, "item_select_test")
+	$CanvasLayer/main_ui/buttons/button_main_menu.connect("pressed", get_tree(), "change_scene", ["res://scenes/main_menu/main_menu.tscn"])
 	
 	update_recipe_list()
 

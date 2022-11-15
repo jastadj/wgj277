@@ -27,34 +27,43 @@ margin_left = 21.0
 margin_top = -154.0
 margin_right = 129.0
 margin_bottom = -27.0
+grow_vertical = 0
 
 [node name="new_game" type="Button" parent="CanvasLayer/main_ui/VBoxContainer"]
-margin_right = 108.0
+margin_right = 168.0
 margin_bottom = 32.0
 custom_fonts/font = SubResource( 1 )
 text = "New Game"
 
 [node name="continue_game" type="Button" parent="CanvasLayer/main_ui/VBoxContainer"]
 margin_top = 36.0
-margin_right = 108.0
+margin_right = 168.0
 margin_bottom = 68.0
 custom_fonts/font = SubResource( 2 )
 text = "Continue"
 
 [node name="settings" type="Button" parent="CanvasLayer/main_ui/VBoxContainer"]
 margin_top = 72.0
-margin_right = 108.0
+margin_right = 168.0
 margin_bottom = 104.0
 custom_fonts/font = SubResource( 2 )
 text = "Settings"
 
-[node name="quit" type="Button" parent="CanvasLayer/main_ui/VBoxContainer"]
+[node name="recipe_editor" type="Button" parent="CanvasLayer/main_ui/VBoxContainer"]
 margin_top = 108.0
-margin_right = 108.0
+margin_right = 168.0
 margin_bottom = 140.0
+custom_fonts/font = SubResource( 2 )
+text = "Recipe Editor"
+
+[node name="quit" type="Button" parent="CanvasLayer/main_ui/VBoxContainer"]
+margin_top = 144.0
+margin_right = 168.0
+margin_bottom = 176.0
 custom_fonts/font = SubResource( 2 )
 text = "Quit"
 
 [connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/continue_game" to="." method="_on_continue_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/recipe_editor" to="." method="_on_recipe_editor_pressed"]
 [connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/quit" to="." method="_on_quit_pressed"]

@@ -28,3 +28,7 @@ func _on_quit_pressed():
 func _on_continue_game_pressed():
 	if Gamedata.load_game():
 		get_tree().change_scene("res://scenes/game/game.tscn")
+
+
+func _on_recipe_editor_pressed():
+	get_tree().change_scene("res://tools/recipes/recipes.tscn")

@@ -14,15 +14,15 @@ func get_sprite():
 
 func is_ingredient():
 	
-	for processor in Gamedata.recipes:
-		for recipe in Gamedata.recipes[processor]:
+	for processor in Crafting.recipes:
+		for recipe in Crafting.recipes[processor]:
 			if recipe["inputs"].has(filename): return true
 	return false
 	
 func is_product():
 	
-	for processor in Gamedata.recipes:
-		for recipe in Gamedata.recipes[processor]:
+	for processor in Crafting.recipes:
+		for recipe in Crafting.recipes[processor]:
 			if recipe["outputs"].has(filename): return true
 	return false
 
