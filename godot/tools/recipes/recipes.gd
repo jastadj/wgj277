@@ -109,6 +109,7 @@ func update_recipe_list():
 				var newslot = preload("res://ui/item_slot/item_slot.tscn").instance()
 				var inputitem = load(input).instance()
 				newslot._item_container = newcontainer
+				inputitem.stack = recipe["inputs"][input]
 				newcontainer.add_item(inputitem)
 				newentry.get_node("input_list").add_child(newslot)
 			# outputs
@@ -118,6 +119,7 @@ func update_recipe_list():
 				var newslot = preload("res://ui/item_slot/item_slot.tscn").instance()
 				var outputitem = load(output).instance()
 				newslot._item_container = newcontainer
+				outputitem.stack = recipe["outputs"][output]
 				newcontainer.add_item(outputitem)
 				newentry.get_node("output_list").add_child(newslot)
 			# add entry to recipe list

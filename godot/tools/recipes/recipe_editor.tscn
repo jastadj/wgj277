@@ -57,11 +57,10 @@ margin_right = 96.0
 margin_bottom = 38.0
 text = "+"
 
-[node name="inputs_grid" type="GridContainer" parent="VBoxContainer/inputs"]
+[node name="input_list" type="VBoxContainer" parent="VBoxContainer/inputs"]
 margin_top = 42.0
 margin_right = 96.0
 margin_bottom = 42.0
-columns = 2
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/inputs"]
 margin_top = 46.0
@@ -84,11 +83,10 @@ margin_right = 96.0
 margin_bottom = 38.0
 text = "+"
 
-[node name="outputs_grid" type="GridContainer" parent="VBoxContainer/outputs"]
+[node name="output_list" type="VBoxContainer" parent="VBoxContainer/outputs"]
 margin_top = 42.0
 margin_right = 96.0
 margin_bottom = 42.0
-columns = 2
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/outputs"]
 margin_top = 46.0
