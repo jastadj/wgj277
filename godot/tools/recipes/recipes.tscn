@@ -102,52 +102,65 @@ custom_fonts/font = SubResource( 2 )
 text = "Del"
 
 [node name="VSeparator3" type="VSeparator" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
-margin_left = 228.0
-margin_right = 232.0
+margin_left = 116.0
+margin_right = 120.0
 margin_bottom = 32.0
 
 [node name="processor" type="Label" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
-margin_left = 116.0
+margin_left = 124.0
 margin_top = 3.0
-margin_right = 224.0
+margin_right = 232.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 2 )
 text = "processor"
 
 [node name="VSeparator" type="VSeparator" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
-margin_left = 228.0
-margin_right = 232.0
+margin_left = 236.0
+margin_right = 240.0
+margin_bottom = 32.0
+
+[node name="time" type="Label" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_left = 244.0
+margin_top = 3.0
+margin_right = 304.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 2 )
+text = "Time:"
+
+[node name="VSeparator4" type="VSeparator" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
+margin_left = 308.0
+margin_right = 312.0
 margin_bottom = 32.0
 
 [node name="inputs" type="Label" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
-margin_left = 236.0
+margin_left = 316.0
 margin_top = 3.0
-margin_right = 320.0
+margin_right = 400.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 2 )
 text = "Inputs:"
 
 [node name="input_list" type="HBoxContainer" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
-margin_left = 324.0
-margin_right = 324.0
+margin_left = 404.0
+margin_right = 404.0
 margin_bottom = 32.0
 
 [node name="VSeparator2" type="VSeparator" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
-margin_left = 328.0
-margin_right = 332.0
+margin_left = 408.0
+margin_right = 412.0
 margin_bottom = 32.0
 
 [node name="outputs" type="Label" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
-margin_left = 336.0
+margin_left = 416.0
 margin_top = 3.0
-margin_right = 432.0
+margin_right = 512.0
 margin_bottom = 29.0
 custom_fonts/font = SubResource( 2 )
 text = "Outputs:"
 
 [node name="output_list" type="HBoxContainer" parent="CanvasLayer/main_ui/recipes_panel/a_recipe"]
-margin_left = 436.0
-margin_right = 436.0
+margin_left = 516.0
+margin_right = 516.0
 margin_bottom = 32.0
 
 [node name="menus" type="Control" parent="CanvasLayer/main_ui"]

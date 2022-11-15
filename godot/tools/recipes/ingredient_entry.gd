@@ -8,7 +8,13 @@ func _init():
 	item_container = load("res://engine/item_container.gd").new()
 
 func _ready():
+	
 	$item_slot._item_container = item_container
+	
+	# disable item slot dragging
+	$item_slot.locked = true
+	
+	# connections
 	$item_slot.connect("rmb_pressed", self, "emit_signal", ["rmb_pressed"])
 	$minus_button.connect("pressed", self, "decrement_stack")
 	$plus_button.connect("pressed", self, "increment_stack")

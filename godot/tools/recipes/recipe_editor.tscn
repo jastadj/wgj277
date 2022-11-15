@@ -13,7 +13,7 @@ script = ExtResource( 1 )
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 103.0
-margin_bottom = 209.0
+margin_bottom = 263.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 96.0
@@ -41,10 +41,45 @@ margin_top = 42.0
 margin_right = 96.0
 margin_bottom = 46.0
 
-[node name="inputs" type="VBoxContainer" parent="VBoxContainer"]
+[node name="crafting_time" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 50.0
 margin_right = 96.0
+margin_bottom = 92.0
+
+[node name="Label" type="Label" parent="VBoxContainer/crafting_time"]
+margin_right = 96.0
+margin_bottom = 14.0
+text = "Crafting Time"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/crafting_time"]
+margin_top = 18.0
+margin_right = 96.0
+margin_bottom = 42.0
+
+[node name="time" type="LineEdit" parent="VBoxContainer/crafting_time/HBoxContainer"]
+margin_right = 58.0
+margin_bottom = 24.0
+text = "0"
+align = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/crafting_time/HBoxContainer"]
+margin_left = 62.0
+margin_top = 5.0
+margin_right = 84.0
+margin_bottom = 19.0
+size_flags_horizontal = 4
+text = "sec"
+align = 2
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+margin_top = 96.0
+margin_right = 96.0
 margin_bottom = 100.0
+
+[node name="inputs" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 104.0
+margin_right = 96.0
+margin_bottom = 154.0
 
 [node name="Label" type="Label" parent="VBoxContainer/inputs"]
 margin_right = 96.0
@@ -68,9 +103,9 @@ margin_right = 96.0
 margin_bottom = 50.0
 
 [node name="outputs" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 104.0
+margin_top = 158.0
 margin_right = 96.0
-margin_bottom = 154.0
+margin_bottom = 208.0
 
 [node name="Label" type="Label" parent="VBoxContainer/outputs"]
 margin_right = 96.0
@@ -94,13 +129,13 @@ margin_right = 96.0
 margin_bottom = 50.0
 
 [node name="save_recipe" type="Button" parent="VBoxContainer"]
-margin_top = 158.0
+margin_top = 212.0
 margin_right = 96.0
-margin_bottom = 178.0
+margin_bottom = 232.0
 text = "Save"
 
 [node name="cancel" type="Button" parent="VBoxContainer"]
-margin_top = 182.0
+margin_top = 236.0
 margin_right = 96.0
-margin_bottom = 202.0
+margin_bottom = 256.0
 text = "Cancel"

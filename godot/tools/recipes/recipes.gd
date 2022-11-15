@@ -102,6 +102,9 @@ func update_recipe_list():
 			newentry.get_node("delete").connect("pressed", self, "on_delete_recipe", [processor, recipe])
 			newentry.get_node("edit").connect("pressed", self, "on_edit_recipe", [processor, recipe])
 			
+			# crafting time
+			newentry.get_node("time").text = str("Time:", recipe["time"])
+			
 			#inputs
 			for input in recipe["inputs"]:
 				# create item, container, and ui slot
@@ -111,6 +114,7 @@ func update_recipe_list():
 				newslot._item_container = newcontainer
 				inputitem.stack = recipe["inputs"][input]
 				newcontainer.add_item(inputitem)
+				newslot.locked = true
 				newentry.get_node("input_list").add_child(newslot)
 			# outputs
 			for output in recipe["outputs"]:
@@ -121,6 +125,7 @@ func update_recipe_list():
 				newslot._item_container = newcontainer
 				outputitem.stack = recipe["outputs"][output]
 				newcontainer.add_item(outputitem)
+				newslot.locked = true
 				newentry.get_node("output_list").add_child(newslot)
 			# add entry to recipe list
 			recipe_list.add_child(newentry)

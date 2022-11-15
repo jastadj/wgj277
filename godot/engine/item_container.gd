@@ -45,3 +45,17 @@ func add_item(item_to_add):
 	# unable to add item
 	return false
 
+func increment_stack(count = 1):
+	if item == null: return false
+	item.stack += count
+	return true
+	
+func decrement_stack(count = 1):
+	if item == null: return false
+	item.stack -= count
+	if item.stack == 0:
+		remove_item().queue_free()
+	elif item.stack < 0:
+		printerr("Error: Item stack decremented below 0!")
+		return false
+	return true

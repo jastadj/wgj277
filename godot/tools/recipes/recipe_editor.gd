@@ -4,6 +4,7 @@ onready var items = get_tree().current_scene.items
 onready var processors = get_tree().current_scene.processors
 onready var input_list = $VBoxContainer/inputs/input_list
 onready var output_list = $VBoxContainer/outputs/output_list
+onready var crafting_time = $VBoxContainer/crafting_time/HBoxContainer/time
 
 var _item_select_menu = null
 var _item_select_menu_scene = preload("res://tools/recipes/item_Selector.tscn")
@@ -40,6 +41,14 @@ func _ready():
 	$VBoxContainer/outputs/button_add_output.connect("pressed", self, "on_add_output_pressed")
 	$VBoxContainer/save_recipe.connect("pressed", self, "on_save_recipe")
 	$VBoxContainer/cancel.connect("pressed", self, "on_cancel")
+
+func _process(delta):
+	$VBoxContainer/save_recipe.disabled = !is_recipe_valid()
+	if !is_crafting_time_valid():
+		crafting_time.modulate = Color.red
+	else:
+		crafting_time.modulate = Color.white
+	
 
 func increment_ingredient_entry(list, item_scene):
 	if item_scene == null: return false
@@ -87,6 +96,8 @@ func on_add_output_pressed():
 	
 func on_save_recipe():
 	
+	if !is_recipe_valid(): return
+	
 	var processor = $VBoxContainer/processor/selected_processor
 	
 	# create recipe dictionary
@@ -101,6 +112,9 @@ func on_save_recipe():
 	for o in output_list.get_children():
 		recipe["outputs"][o.get_item_scene()] = o.get_stack_size()
 	
+	# crafting time
+	recipe["time"] = int(crafting_time.text)
+	
 	if _editing_recipe != null:
 		emit_signal("recipe_edited", _editing_recipe, recipe )
 	else: emit_signal("recipe_created", recipe)
@@ -108,3 +122,15 @@ func on_save_recipe():
 	
 func on_cancel():
 	queue_free()
+
+func is_crafting_time_valid():
+	if !crafting_time.text.is_valid_integer(): return false
+	elif int(crafting_time.text) < 0: return false
+	return true
+	
+func is_recipe_valid():
+	if input_list.get_child_count() == 0: return false
+	if output_list.get_child_count() == 0: return false
+	if !is_crafting_time_valid(): return false
+
+	return true
