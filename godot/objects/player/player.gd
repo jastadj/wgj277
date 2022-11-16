@@ -9,6 +9,7 @@ var inventory_size = 3
 var _interaction_target = null
 
 var anim_statemachine
+var _on_ready_animation = "down_idle"
 
 func _init():
 	# init inventory
@@ -18,7 +19,7 @@ func _ready():
 		
 	# get animation statemachine reference
 	anim_statemachine = $AnimationTree.get("parameters/StateMachine/playback")
-	anim_statemachine.start("down_idle")
+	anim_statemachine.start(_on_ready_animation)
 
 func _init_inventory(isize):
 	inventory = []
@@ -46,6 +47,7 @@ func save_player():
 	var pdata = {"inventory":Gamedata.save_item_array(inventory)}	
 	# save position
 	pdata["position"] = {"x":position.x, "y":position.y}
+	pdata["anim"] = anim_statemachine.get_current_node()
 	return pdata
 	
 # load player from save state
@@ -56,6 +58,7 @@ func load_player(pdata):
 	inventory = Gamedata.load_item_array(pdata["inventory"])
 	# load position
 	position = Vector2(pdata["position"]["x"], pdata["position"]["y"])
+	_on_ready_animation = pdata["anim"]
 	return true
 
 # movement input

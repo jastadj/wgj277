@@ -67,8 +67,7 @@ func _on_recipe_edited(original_recipe, new_recipe):
 	# find the original recipe
 	for recipe in recipes[processor]:
 		if recipe == original_recipe[processor]:
-			recipe["inputs"] = new_recipe["inputs"]
-			recipe["outputs"] = new_recipe["outputs"]
+			recipe.merge(new_recipe, true)
 			print("Recipe updated.")
 			update_recipe_list()
 			return
