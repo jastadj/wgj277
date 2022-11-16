@@ -26,11 +26,13 @@ func _ready():
 		
 		# add the inputs
 		for input in _editing_recipe[processor]["inputs"]:
-			_add_input_selected(input)
+			var newentry = _add_input_selected(input).get_slot()
+			newentry._item_container.set_stack(_editing_recipe[processor]["inputs"][input])
 			
 		# add the outputs
 		for output in _editing_recipe[processor]["outputs"]:
-			_add_output_selected(output)
+			var newentry = _add_output_selected(output).get_slot()
+			newentry._item_container.set_stack(_editing_recipe[processor]["outputs"][output])
 		
 	# otherwise if creating a new recipe, allow any processor to be selected
 	else:
@@ -67,12 +69,18 @@ func create_ingredient_entry(item_scene):
 func _add_input_selected(item_scene):
 	# if unable to find and increment an ingredient, create new entry
 	if !increment_ingredient_entry(input_list, item_scene):
-		input_list.add_child(create_ingredient_entry(item_scene))
+		var newentry = create_ingredient_entry(item_scene)
+		input_list.add_child(newentry)
+		return newentry
+	return null
 	
 func _add_output_selected(item_scene):
 	# if unable to find and increment an ingredient, create new entry
 	if !increment_ingredient_entry(output_list, item_scene):
-		output_list.add_child(create_ingredient_entry(item_scene))
+		var newentry = create_ingredient_entry(item_scene)
+		output_list.add_child(newentry)
+		return newentry
+	return null
 
 func _remove_entry(ingredient):
 	ingredient.get_parent().remove_child(ingredient)

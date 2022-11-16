@@ -16,9 +16,9 @@ func _ready():
 		var container = preload("res://engine/item_container.gd").new()
 		item_containers.append(container)
 		var slot = preload("res://ui/item_slot/item_slot.tscn").instance()
-		slot.set_item_container(container)
+		slot._item_container = container
 		container.add_item(i.duplicate())
-		slot.locked = true
+		container.locked = true
 		slot.connect("lmb_pressed", self, "on_item_selected")
 		add_child(slot)
 

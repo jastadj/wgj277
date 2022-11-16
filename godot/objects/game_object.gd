@@ -45,3 +45,8 @@ func save_object():
 # redefine this function with derived object classes	
 func load_object(object):
 	return _load_object(object)
+
+# return the object's sprite, this can be redefined for
+# item sprites that are more complex
+func get_sprite():
+	return get_node("Sprite")

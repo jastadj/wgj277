@@ -1,6 +1,9 @@
 extends Node
 
 var item = null
+var locked = false #  used to prevent drag and drop, not a hard lockout
+
+signal item_changed
 
 # is the item container empty?
 func empty():
@@ -15,6 +18,7 @@ func remove_item():
 	# otherwise, remove the item and return it
 	var titem = item
 	item = null
+	emit_signal("item_changed")
 	return titem
 
 func can_stack_with(sitem):
@@ -34,6 +38,7 @@ func add_item(item_to_add):
 			item_to_add.get_parent().remove_child(item_to_add)
 		# set the item reference
 		item = item_to_add
+		emit_signal("item_changed")
 		return true
 	# the container has an item already in it, try to stack
 	else:
@@ -41,6 +46,7 @@ func add_item(item_to_add):
 		if can_stack_with(item_to_add):
 			item.stack += item_to_add.stack
 			item_to_add.queue_free()
+			emit_signal("item_changed")
 			return true
 	# unable to add item
 	return false
@@ -48,6 +54,7 @@ func add_item(item_to_add):
 func increment_stack(count = 1):
 	if item == null: return false
 	item.stack += count
+	emit_signal("item_changed")
 	return true
 	
 func decrement_stack(count = 1):
@@ -58,4 +65,13 @@ func decrement_stack(count = 1):
 	elif item.stack < 0:
 		printerr("Error: Item stack decremented below 0!")
 		return false
+	emit_signal("item_changed")
 	return true
+
+func set_stack(val):
+	if item == null or val < 1: return
+	item.stack = val
+	emit_signal("item_changed")
+
+func lock(): locked = true
+func unlock(): locked = false

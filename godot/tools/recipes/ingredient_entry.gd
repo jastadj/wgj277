@@ -9,10 +9,10 @@ func _init():
 
 func _ready():
 	
-	$item_slot._item_container = item_container
+	$item_slot.set_item_container(item_container)
 	
 	# disable item slot dragging
-	$item_slot.locked = true
+	$item_slot._item_container.locked = true
 	
 	# connections
 	$item_slot.connect("rmb_pressed", self, "emit_signal", ["rmb_pressed"])
@@ -21,10 +21,10 @@ func _ready():
 
 func decrement_stack():
 	if item_container.item.stack > 1:
-		item_container.item.stack -= 1
+		item_container.decrement_stack()
 		
 func increment_stack():
-	item_container.item.stack += 1
+	item_container.increment_stack()
 
 func set_item_by_scene(item_scene):
 	if item_container.empty():
@@ -36,6 +36,8 @@ func get_item_scene():
 	if !item_container.empty():
 		return item_container.item.filename
 	return null
+
+func get_slot(): return $item_slot
 
 func get_stack_size():
 	if !item_container.empty():

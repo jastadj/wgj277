@@ -69,6 +69,12 @@ position = Vector2( 136, 66 )
 [node name="plant_item2" parent="objects" instance=ExtResource( 7 )]
 position = Vector2( 109, 60 )
 
+[node name="plant_item3" parent="objects" instance=ExtResource( 7 )]
+position = Vector2( 126, 52 )
+
+[node name="plant_item4" parent="objects" instance=ExtResource( 7 )]
+position = Vector2( 120, 65 )
+
 [node name="juicer" parent="objects" instance=ExtResource( 9 )]
 position = Vector2( 106, 23 )
 
