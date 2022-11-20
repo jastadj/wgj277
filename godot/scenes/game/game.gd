@@ -44,6 +44,8 @@ func _ready():
 	
 	# when this map is leaving the tree, save the map data
 	connect("tree_exiting", self, "_on_tree_exiting")
+	
+	$CanvasLayer/main_ui._init_inventory_ui()
 
 func _on_tree_exiting():
 	# offload map data on exiting tree

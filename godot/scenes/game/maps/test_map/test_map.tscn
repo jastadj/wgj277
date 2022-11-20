@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://objects/processor/processor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/testitem/testitem.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://objects/computer/computer.tscn" type="PackedScene" id=8]
 [ext_resource path="res://objects/juicer/juicer.tscn" type="PackedScene" id=9]
 [ext_resource path="res://objects/dropbox/dropbox.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/beaker/beaker.tscn" type="PackedScene" id=11]
 [ext_resource path="res://objects/grinder/grinder.tscn" type="PackedScene" id=12]
 [ext_resource path="res://tiles/tiles.tres" type="TileSet" id=16]
 
@@ -92,6 +93,15 @@ position = Vector2( 205, 59 )
 
 [node name="dropbox" parent="objects" instance=ExtResource( 10 )]
 position = Vector2( 100, 100 )
+
+[node name="beaker" parent="objects" instance=ExtResource( 11 )]
+position = Vector2( 68, 88 )
+
+[node name="beaker2" parent="objects" instance=ExtResource( 11 )]
+position = Vector2( 78, 82 )
+
+[node name="beaker3" parent="objects" instance=ExtResource( 11 )]
+position = Vector2( 63, 79 )
 
 [node name="teleporters" type="Node2D" parent="."]
 

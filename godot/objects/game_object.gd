@@ -49,4 +49,4 @@ func load_object(object):
 # return the object's sprite, this can be redefined for
 # item sprites that are more complex
 func get_sprite():
-	return get_node("Sprite")
+	return get_node("Sprite").duplicate()

@@ -15,18 +15,7 @@ func _ready():
 		debug.get_node("bl_buttons/testbutton").connect("pressed", self, "_on_dbg_testbutton_pressed")
 		debug.get_node("bl_buttons/plants").connect("pressed", self, "open_menu_scene", [plants_ui_scene])
 	
-	yield(get_tree().current_scene, "ready")
 	player = Gamedata.current_game["player"]
-	
-	# init player inventory slots
-	var item_slot = preload("res://ui/item_slot/item_slot.tscn")
-	for c in $inventory.get_children():
-		$inventory.remove_child(c)
-		c.queue_free()
-	for i in range(0, player.inventory_size):
-		var newslot = item_slot.instance()
-		newslot.set_item_container(player.inventory[i])
-		$inventory.add_child(newslot)
 		
 
 func _input(event):
@@ -78,7 +67,18 @@ func _process(delta):
 		player.allow_input = false
 		$interaction_ui.hide()
 	else: player.allow_input = true
-		
+
+func _init_inventory_ui():
+	# init player inventory slots
+	var item_slot = preload("res://ui/item_slot/item_slot.tscn")
+	for c in $inventory.get_children():
+		$inventory.remove_child(c)
+		c.queue_free()
+	for i in range(0, player.inventory_size):
+		var newslot = item_slot.instance()
+		newslot.set_item_container(player.inventory[i])
+		$inventory.add_child(newslot)
+
 func _on_dbg_testbutton_pressed():
 	Gamedata.add_message("This is a fairly long message but not too long.  Only for testing of course...")
 

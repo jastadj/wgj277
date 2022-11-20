@@ -25,6 +25,8 @@ func update_slot():
 	
 	if !_item_container:
 		$background/item.texture = null
+		for child in $background/item.get_children():
+			child.queue_free()
 		$ui_anchor/stack_size.visible = false
 		return
 	
@@ -32,12 +34,15 @@ func update_slot():
 	# and hide the stack size
 	if _item_container.empty():
 		$background/item.texture = null
+		for child in $background/item.get_children():
+			child.queue_free()
 		$ui_anchor/stack_size.visible = false
 	# otherwise display the item thats stored in the container
 	# note: the item must have a Sprite node called Sprite
 	else:
-		$background/item.texture = _item_container.item.get_node("Sprite").texture
+		#$background/item.texture = _item_container.item.get_node("Sprite").texture
 		var stack_size = _item_container.item.stack
+		set_sprite(_item_container.item.get_sprite())
 		if is_inside_tree():
 			var drag_data = get_viewport().gui_get_drag_data()
 			# if drag data is valid
@@ -112,6 +117,15 @@ func lock():
 func unlock():
 	if _item_container: _item_container.unlock()
 
+func set_sprite(sprite):
+	for child in $background.get_children():
+		$background.remove_child(child)
+		child.queue_free()
+		
+	sprite.name = "item"
+	sprite.position = $background.get_rect().size/2
+	$background.add_child(sprite)
+
 # hide/unhide item is used during drag and drop
 func hide_item():
 	$background/item.visible = false
@@ -147,7 +161,9 @@ func _drag_item_preview():
 	# instance the dragged item ui
 	var drag_preview = preload("res://ui/item_slot/drag_preview.tscn").instance()
 	drag_preview.source_slot = self
-	drag_preview.get_node("Sprite").texture = _item_container.item.get_node("Sprite").texture
+	var dsprite = _item_container.item.get_sprite()
+	dsprite.scale = Vector2(2,2)
+	drag_preview.add_child(dsprite)
 	return drag_preview
 	
 

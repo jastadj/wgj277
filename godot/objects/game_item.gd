@@ -9,9 +9,6 @@ func _ready():
 
 func is_game_item(): return true
 
-func get_sprite():
-	return get_node("Sprite")
-
 func is_ingredient():
 	
 	for processor in Crafting.recipes:
