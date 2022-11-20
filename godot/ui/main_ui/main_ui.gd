@@ -1,5 +1,9 @@
 extends Control
 
+export(bool) var show_debug = true
+
+onready var debug = $debug
+
 var player
 
 var plants_ui_scene = preload("res://ui/plants/plants.tscn")
@@ -7,9 +11,9 @@ var escape_menu_scene = preload("res://ui/escape_menu/escape_menu.tscn")
 
 func _ready():
 	
-	$testbutton.connect("pressed", self, "on_testbutton_pressed")
-	
-	$plants.connect("pressed", self, "open_menu_scene", [plants_ui_scene])
+	if show_debug:
+		debug.get_node("bl_buttons/testbutton").connect("pressed", self, "_on_dbg_testbutton_pressed")
+		debug.get_node("bl_buttons/plants").connect("pressed", self, "open_menu_scene", [plants_ui_scene])
 	
 	yield(get_tree().current_scene, "ready")
 	player = Gamedata.current_game["player"]
@@ -75,7 +79,7 @@ func _process(delta):
 		$interaction_ui.hide()
 	else: player.allow_input = true
 		
-func on_testbutton_pressed():
+func _on_dbg_testbutton_pressed():
 	Gamedata.add_message("This is a fairly long message but not too long.  Only for testing of course...")
 
 func menus_opened():
@@ -102,7 +106,19 @@ func can_drop_data(position, data):
 	return true
 
 func drop_data(position, data):
-	# remove the item from the source container
-	var titem = data["source"].remove_item()
+	
+	var titem
+	
+	# if the dropped item is leaving items behind
+	if data["leave_behind"] > 0:
+		# then duplicate the item to drop on ground
+		titem = data["source"].item.duplicate()
+		# set the source item to equal the "leave_behind" stack
+		data["source"].set_stack(data["leave_behind"])
+		
+	# otherwise, remove the item from the container
+	else:
+		titem = data["source"].remove_item()
+	
 	player.drop_item(titem)
 	return true

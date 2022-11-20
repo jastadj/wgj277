@@ -13,6 +13,7 @@ func _input(event):
 
 func _on_save_button_pressed():
 	Gamedata.save_game()
+	queue_free()
 
 
 func _on_quit_game_button_pressed():

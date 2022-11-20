@@ -2,6 +2,11 @@
 
 [ext_resource path="res://ui/item_slot/drag_preview.gd" type="Script" id=1]
 
-[node name="drag_preview" type="Sprite"]
-scale = Vector2( 2, 2 )
+[node name="drag_preview" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
 script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )

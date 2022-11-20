@@ -1,4 +1,4 @@
-extends Sprite	
+extends Control
 
 var source_slot = null
 
@@ -13,7 +13,7 @@ func _exit_tree():
 
 func _process(delta):
 	
-	position = get_global_mouse_position()
+	rect_global_position = get_global_mouse_position()
 
 func _input(event):
 	

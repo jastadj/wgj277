@@ -17,6 +17,7 @@ func remove_item():
 	
 	# otherwise, remove the item and return it
 	var titem = item
+	
 	item = null
 	emit_signal("item_changed")
 	return titem

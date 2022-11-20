@@ -1,7 +1,6 @@
 extends Node
 
 var message_queue = []
-
 var current_game = {}
 
 var settings_file = "user://settings.json"
@@ -9,6 +8,8 @@ var save_dir = "user://saves/slot0"
 
 onready var background_container = load("res://engine/item_container.gd").new()
 var settings = {"tooltip_delay":500}
+
+var _prev_drag_data = null
 
 func _ready():
 	
@@ -24,6 +25,17 @@ func _ready():
 	forbidden_cursor_image.fill(Color(1,1,1,0.01))
 	forbidden_cursor.create_from_image(forbidden_cursor_image)
 	Input.set_custom_mouse_cursor(forbidden_cursor, Input.CURSOR_FORBIDDEN)
+
+func _notification(what):
+	if what == NOTIFICATION_DRAG_END:
+		# if the drag failed, combine source slot stack with the drag data stack
+		if !get_viewport().gui_is_drag_successful():
+			var dragged_container = _prev_drag_data["source"]
+			dragged_container.set_stack( dragged_container.item.stack + _prev_drag_data["leave_behind"])
+		_prev_drag_data["source"].emit_signal("item_changed")
+			
+	elif what == NOTIFICATION_DRAG_BEGIN:
+		_prev_drag_data = get_viewport().gui_get_drag_data()
 
 func save_settings(file_name = settings_file):
 	print("Saving settings to file:", file_name)

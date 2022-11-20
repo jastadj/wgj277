@@ -1,1 +1,1 @@
-{"res://objects/grinder/grinder.tscn":[{"inputs":{"res://objects/plants/plant_fire.tscn":2},"outputs":{"res://objects/testitem/testitem.tscn":2},"time":2}],"res://objects/juicer/juicer.tscn":[{"inputs":{"res://objects/plants/plant_fire.tscn":1},"outputs":{"res://objects/testitem/testitem.tscn":1},"time":0}]}
+{"res://objects/grinder/grinder.tscn":[],"res://objects/juicer/juicer.tscn":[{"inputs":{"res://objects/plants/plant_fire.tscn":1},"outputs":{"res://objects/testitem/testitem.tscn":1},"time":0}]}
