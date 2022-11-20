@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://brian_test/button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://brian_test/brianmenu.gd" type="Script" id=2]
+
+[node name="Control" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -158.0
+margin_bottom = -91.0
+script = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 859.0
+margin_bottom = 502.0
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+margin_right = 852.0
+margin_bottom = 50.0
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+text = "test"
+
+[node name="Label2" type="Label" parent="VBoxContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+text = "test"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 54.0
+margin_right = 852.0
+margin_bottom = 74.0
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_top = 3.0
+margin_right = 98.0
+margin_bottom = 17.0
+text = "this is my label"
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 102.0
+margin_right = 209.0
+margin_bottom = 20.0
+text = "another button"
+
+[node name="Container" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 78.0
+margin_right = 852.0
+margin_bottom = 142.0
+mytext = "cool"
+
+[node name="Container2" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 146.0
+margin_right = 852.0
+margin_bottom = 210.0
+mytext = "settings"
+
+[node name="Container3" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 214.0
+margin_right = 852.0
+margin_bottom = 278.0
+mytext = "quit"
+
+[node name="Container4" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 282.0
+margin_right = 852.0
+margin_bottom = 346.0
