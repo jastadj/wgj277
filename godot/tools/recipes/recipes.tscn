@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://tools/recipes/recipes.gd" type="Script" id=1]
 [ext_resource path="res://objects/juicer/juicer.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://fonts/MOZART_0.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://objects/testitem/testitem.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/plants/plant_fire.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/beaker/beaker.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -177,6 +178,8 @@ mouse_filter = 2
 
 [node name="_items" type="Node2D" parent="."]
 visible = false
+
+[node name="beaker" parent="_items" instance=ExtResource( 9 )]
 
 [node name="testitem" parent="_items" instance=ExtResource( 7 )]
 

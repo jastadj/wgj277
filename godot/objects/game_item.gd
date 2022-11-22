@@ -4,9 +4,6 @@ export(bool) var can_pickup = true
 export(int) var stack = 1
 export(int) var max_stack = 9999
 
-func _ready():
-	pass
-
 func is_game_item(): return true
 
 func is_ingredient():

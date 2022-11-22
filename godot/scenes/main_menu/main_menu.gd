@@ -32,3 +32,7 @@ func _on_continue_game_pressed():
 
 func _on_recipe_editor_pressed():
 	get_tree().change_scene("res://tools/recipes/recipes.tscn")
+
+
+func _on_mixture_testing_pressed():
+	 get_tree().change_scene("res://tools/mixture/mixture_test.tscn")

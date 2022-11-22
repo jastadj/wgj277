@@ -15,6 +15,10 @@ func remove_item():
 	# if there's no item to remove, return nothing
 	if item == null: return null
 	
+	# disconnect signals
+	if item.has_method("is_mixture_container"):
+		item.mixture.disconnect("mixture_changed", self, "emit_signal")
+	
 	# otherwise, remove the item and return it
 	var titem = item
 	
@@ -32,6 +36,8 @@ func can_stack_with(sitem):
 
 func add_item(item_to_add):
 	
+	if item_to_add == null: return false
+	
 	# if this container has no item
 	if item == null:
 		# if the item to add to container has a parent, remove the item as a child
@@ -39,6 +45,12 @@ func add_item(item_to_add):
 			item_to_add.get_parent().remove_child(item_to_add)
 		# set the item reference
 		item = item_to_add
+		# call the ready function of the item (sometimes items are added to container)
+		# without ever being ready by being put in the tree...
+		item._ready()
+		# if this item is a mixture, connect the mixture changed signal
+		if item.has_method("is_mixture_container"):
+			item.mixture.connect("mixture_changed", self, "emit_signal", ["item_changed"])
 		emit_signal("item_changed")
 		return true
 	# the container has an item already in it, try to stack

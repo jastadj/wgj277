@@ -1,0 +1,413 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/item_slot/item_slot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tools/mixture/mixture_test.gd" type="Script" id=2]
+[ext_resource path="res://fonts/MOZART_0.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 3 )
+
+[node name="mixture_test" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="main_ui" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="item_slot" parent="CanvasLayer/main_ui" instance=ExtResource( 1 )]
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 108.0
+margin_bottom = 108.0
+rect_scale = Vector2( 4, 4 )
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/main_ui"]
+margin_left = 541.0
+margin_top = 50.0
+margin_right = 703.0
+margin_bottom = 276.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/main_ui/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 155.0
+margin_bottom = 219.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_right = 148.0
+margin_bottom = 26.0
+
+[node name="Label" type="Label" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 132.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "Max Volume:"
+
+[node name="max_vol" type="Label" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 136.0
+margin_right = 148.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 148.0
+margin_bottom = 56.0
+
+[node name="Label" type="Label" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 132.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "Cur Volume:"
+
+[node name="cur_vol" type="Label" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 136.0
+margin_right = 148.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_top = 60.0
+margin_right = 148.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_right = 108.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "PERCENT: "
+
+[node name="percent" type="Label" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 112.0
+margin_right = 124.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "0"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_top = 90.0
+margin_right = 148.0
+margin_bottom = 94.0
+
+[node name="liquid_label" type="Label" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_top = 98.0
+margin_right = 148.0
+margin_bottom = 124.0
+custom_fonts/font = SubResource( 1 )
+text = "Liquids"
+
+[node name="liquids" type="VBoxContainer" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_top = 128.0
+margin_right = 148.0
+margin_bottom = 128.0
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_top = 132.0
+margin_right = 148.0
+margin_bottom = 136.0
+
+[node name="solid_label" type="Label" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_top = 140.0
+margin_right = 148.0
+margin_bottom = 166.0
+custom_fonts/font = SubResource( 1 )
+text = "Solids"
+
+[node name="solids" type="VBoxContainer" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_top = 170.0
+margin_right = 148.0
+margin_bottom = 170.0
+
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_top = 174.0
+margin_right = 148.0
+margin_bottom = 178.0
+
+[node name="gas_label" type="Label" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_top = 182.0
+margin_right = 148.0
+margin_bottom = 208.0
+custom_fonts/font = SubResource( 1 )
+text = "Gasses"
+
+[node name="gasses" type="VBoxContainer" parent="CanvasLayer/main_ui/PanelContainer/VBoxContainer"]
+margin_top = 212.0
+margin_right = 148.0
+margin_bottom = 212.0
+
+[node name="addbuttons" type="VBoxContainer" parent="CanvasLayer/main_ui"]
+margin_left = 64.0
+margin_top = 318.0
+margin_right = 144.0
+margin_bottom = 358.0
+
+[node name="add_liquid" type="Button" parent="CanvasLayer/main_ui/addbuttons"]
+margin_right = 132.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 1 )
+text = "Add Liquid"
+
+[node name="add_solid" type="Button" parent="CanvasLayer/main_ui/addbuttons"]
+margin_top = 36.0
+margin_right = 132.0
+margin_bottom = 68.0
+custom_fonts/font = SubResource( 1 )
+text = "Add Solid"
+
+[node name="add_gas" type="Button" parent="CanvasLayer/main_ui/addbuttons"]
+margin_top = 72.0
+margin_right = 132.0
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 1 )
+text = "Add Gas"
+
+[node name="buttons" type="VBoxContainer" parent="CanvasLayer/main_ui"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 65.0
+margin_top = -132.0
+margin_right = 233.0
+margin_bottom = -92.0
+
+[node name="remove" type="Button" parent="CanvasLayer/main_ui/buttons"]
+margin_right = 180.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 1 )
+text = "Remove Mixture"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/main_ui"]
+margin_left = 330.0
+margin_top = 421.0
+margin_right = 890.0
+margin_bottom = 525.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/main_ui/VBoxContainer"]
+margin_right = 560.0
+margin_bottom = 26.0
+
+[node name="Label" type="Label" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer2"]
+margin_right = 168.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "Amount to Add:"
+
+[node name="addslider" type="HSlider" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer2"]
+margin_left = 172.0
+margin_top = 5.0
+margin_right = 560.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 20.0
+step = 0.1
+value = 2.0
+tick_count = 10
+
+[node name="adding_volume_label" type="Label" parent="CanvasLayer/main_ui/VBoxContainer"]
+margin_top = 30.0
+margin_right = 560.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 1 )
+text = "Adding Volume:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/main_ui/VBoxContainer"]
+margin_top = 60.0
+margin_right = 560.0
+margin_bottom = 164.0
+
+[node name="addliquidpresets" type="VBoxContainer" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer"]
+margin_right = 240.0
+margin_bottom = 104.0
+
+[node name="addblood" type="Button" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addliquidpresets"]
+margin_right = 240.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 1 )
+text = "Add Blood"
+
+[node name="addblueberryjuice" type="Button" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addliquidpresets"]
+margin_top = 36.0
+margin_right = 240.0
+margin_bottom = 68.0
+custom_fonts/font = SubResource( 1 )
+text = "Add Blueberry Juice"
+
+[node name="addantifreeze" type="Button" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addliquidpresets"]
+margin_top = 72.0
+margin_right = 240.0
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 1 )
+text = "Add Anti-Freeze"
+
+[node name="addsolidpresets" type="VBoxContainer" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer"]
+margin_left = 244.0
+margin_right = 400.0
+margin_bottom = 104.0
+
+[node name="addcarbon" type="Button" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addsolidpresets"]
+margin_right = 156.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 1 )
+text = "Add Carbon"
+
+[node name="addcocaine" type="Button" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addsolidpresets"]
+margin_top = 36.0
+margin_right = 156.0
+margin_bottom = 68.0
+custom_fonts/font = SubResource( 1 )
+text = "Add Cocaine"
+
+[node name="addcaffeine" type="Button" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addsolidpresets"]
+margin_top = 72.0
+margin_right = 156.0
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 1 )
+text = "Add Caffeine"
+
+[node name="addgaspresets" type="VBoxContainer" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer"]
+margin_left = 404.0
+margin_right = 560.0
+margin_bottom = 104.0
+
+[node name="addhydrogen" type="Button" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addgaspresets"]
+margin_right = 156.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 1 )
+text = "Add Hydrogen"
+
+[node name="addoxygen" type="Button" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addgaspresets"]
+margin_top = 36.0
+margin_right = 156.0
+margin_bottom = 68.0
+custom_fonts/font = SubResource( 1 )
+text = "Add Oxygen"
+
+[node name="addco2" type="Button" parent="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addgaspresets"]
+margin_top = 72.0
+margin_right = 156.0
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 1 )
+text = "Add CO2"
+
+[node name="Popup" type="Popup" parent="CanvasLayer/main_ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/main_ui/Popup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -37.0
+margin_top = -290.0
+margin_right = 285.0
+margin_bottom = 290.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/main_ui/Popup/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 315.0
+margin_bottom = 577.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer"]
+margin_right = 308.0
+margin_bottom = 26.0
+
+[node name="label" type="Label" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_right = 60.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "Type:"
+
+[node name="type" type="Label" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 64.0
+margin_right = 256.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "liquid/solid/gas"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 308.0
+margin_bottom = 34.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer"]
+margin_top = 38.0
+margin_right = 308.0
+margin_bottom = 64.0
+
+[node name="label" type="Label" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 60.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "Name:"
+
+[node name="nameinput" type="LineEdit" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 64.0
+margin_right = 308.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 308.0
+margin_bottom = 94.0
+
+[node name="label" type="Label" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer/HBoxContainer4"]
+margin_right = 84.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 1 )
+text = "Volume:"
+
+[node name="volumeinput" type="LineEdit" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 88.0
+margin_right = 308.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+
+[node name="ColorPicker" type="ColorPicker" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer"]
+margin_top = 98.0
+margin_right = 308.0
+margin_bottom = 534.0
+presets_enabled = false
+presets_visible = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer"]
+margin_top = 538.0
+margin_right = 308.0
+margin_bottom = 570.0
+
+[node name="add_button" type="Button" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer/HBoxContainer3"]
+margin_right = 48.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 1 )
+text = "Add"
+
+[node name="cancel_button" type="Button" parent="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 52.0
+margin_right = 136.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 1 )
+text = "Cancel"
+
+[connection signal="pressed" from="CanvasLayer/main_ui/addbuttons/add_liquid" to="." method="_on_add_liquid_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/addbuttons/add_solid" to="." method="_on_add_solid_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/addbuttons/add_gas" to="." method="_on_add_gas_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/buttons/remove" to="." method="_on_remove_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addliquidpresets/addblood" to="." method="_on_addblood_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addliquidpresets/addblueberryjuice" to="." method="_on_addblueberryjuice_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addliquidpresets/addantifreeze" to="." method="_on_addantifreeze_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addsolidpresets/addcarbon" to="." method="_on_addcarbon_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addsolidpresets/addcocaine" to="." method="_on_addcocaine_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addsolidpresets/addcaffeine" to="." method="_on_addcaffeine_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addgaspresets/addhydrogen" to="." method="_on_addhydrogen_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addgaspresets/addoxygen" to="." method="_on_addoxygen_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/VBoxContainer/HBoxContainer/addgaspresets/addco2" to="." method="_on_addco2_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer/HBoxContainer3/add_button" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_ui/Popup/PanelContainer/VBoxContainer/HBoxContainer3/cancel_button" to="." method="_on_cancel_button_pressed"]
